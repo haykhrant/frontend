@@ -1,3 +1,4 @@
+/* app */
 * {
   margin: 0;
   padding: 0;
@@ -12,6 +13,8 @@ body,
   background-color: #f3f3f3;
   z-index: 1;
 }
+
+/* bar */
 .hide {
   position: fixed;
   top: 0;
@@ -24,6 +27,7 @@ body,
   border-bottom: 0.1rem solid #000000;
   padding: 0.2rem 2rem;;
   z-index: 1;
+  overflow: hidden;
 }
 .in_bar {
   position: absolute;
@@ -53,12 +57,14 @@ body,
   top: +3vh;
   opacity: 0;
 }
+
+/* modal */
 .modal {
   position: fixed;
-  top: 0%;
-  left: 0%;
-  right: 0%;
-  bottom: 0%;
+  top: 0;
+  left: 0;
+  right: 0;
+  bottom: 0;
   width: 100%;
   display: flex;
   justify-content: center;
@@ -73,7 +79,7 @@ body,
   transition: 0.1s ease;
   opacity: 1;
 }
-.modal .input_section {
+.modal ._container {
   position: absolute;
   top: 20%;
   left: 50%;
@@ -90,93 +96,49 @@ body,
   transform: translate(-50%, -40%);
   transition: 0.2s ease;
 }
-.modal.active .input_section {
+.modal.active ._container {
   opacity: 1;
   top: 40%;
   transition: 0.1s ease;
 }
-.input_element {
+
+.modal_close {
+  position: absolute;
+  top: 1rem;
+  right: 1rem;
+  cursor: pointer;
+}
+
+/* input */
+._input {
   display: flex;
   justify-content: center;
+  font-family: "Roboto", sans-serif;
   margin-top: 0.5rem;
   padding: 0.2rem;
   min-height: 2.5rem;
   width: 70%;
   outline: none;
 }
-span.input_element {
+span._input {
   text-align: center;
 }
-span.input_element.red {
+span._input.red {
   text-align: center;
   color: #b22222;
 }
-input.input_element,
-textarea.input_element {
-  font-family: "Roboto", sans-serif;
-  font-weight: 700;
-}
-textarea.input_element.large {
-  min-height: 7rem;
-}
-.input_element.buttons {
-  display: flex;
-  justify-content: center;
-  align-items: center;
-}
-.todo_list {
-  display: flex;
-  flex-direction: column;
-  align-items: center;
-  padding: 6vh 0 0 0;
-}
-.todo_list.large {
-  font-size: 1.3rem;
-}
 
-.todo_card {
-  position: relative;
-  display: flex;
-  justify-content: space-between;
-  min-height: 13rem;
-  width: 40rem;
-  padding: 1rem 0.5rem 1rem 0.5rem;
-  margin-top: 1rem;
-  background-color: #f5f5f5;
-  transition: 0.3s ease;
-  overflow: hidden;
-  opacity: 0.1;
-}
-.todo_card:hover {
-  box-shadow: 0 0 0.3rem 0.05rem #b3b3b3;
-}
-.todo_card:hover .buttonSection {
-  bottom: 4%;
-  opacity: 1;
-}
-.todo_card.deleted {
-  visibility: hidden;
-}
-.todo_card.animated {
-  background-color: #e5e5e5;
-  opacity: 1;
-}
-.card_title {
-  min-width: 7rem;
-  font-size: 1.3rem;
-  font-weight: 800;
-  overflow-wrap: break-word;
-  text-align: center;
-}
-.card_description {
-  min-width: 30rem;
-  margin-left: 1.5rem;
-  font-size: 0.9rem;
-  text-align: right;
-  overflow-wrap: break-word;
-  font-family: "Roboto", sans-serif;
-}
-.buttonSection {
+/*input._input,*/
+/*textarea._input {*/
+/*  font-family: "Roboto", sans-serif;*/
+/*  font-weight: 700;*/
+/*}*/
+/*textarea._input.large {*/
+/*  min-height: 7rem;*/
+/*}*/
+
+/* button */
+.button_section {
   position: absolute;
   bottom: -10%;
   right: 0.5rem;
@@ -185,7 +147,7 @@ textarea.input_element.large {
   opacity: 0;
   transition: 0.1s ease;
 }
-.card_button {
+._button {
   padding: 0.5rem 1rem;
   margin-left: 0.5rem;
   border: 0;
@@ -198,45 +160,136 @@ textarea.input_element.large {
   transition: 0.3s ease;
   border-bottom: 0.09rem solid #ffffff;
 }
-.color_picker {
-  padding: 0.5rem 1rem;
-  margin-left: 0.5rem;
-  outline: none;
-  background-color: #ffffff;
-  font-size: 0.9rem;
-  font-weight: 800;
-  font-family: "Roboto", sans-serif;
-  transition: 0.3s ease;
-}
-.card_button:hover {
+
+._button:hover {
   border-bottom: 0.09rem solid #000000;
   box-shadow: 0 0 0.2rem 0.05rem #b3b3b3;
 }
-.card_button:active {
+._button:active {
   border-bottom: 0.09rem solid #646464;
   box-shadow: 0 0 0.05rem 0.1rem #b3b3b3;
 }
-.message {
-  position: fixed;
-  top: -35vh;
-  left: 0rem;
-  right: 0rem;
-  padding: 1rem 0;
-  background-color: #eaeaea;
-  color: #b61a1a;
+
+/* link */
+.link{
+  display: block;
+  margin: 0 0.5rem;
+  border-bottom: 0.1rem solid transparent;
+}
+
+.link:hover{
+  border-bottom: 0.1rem solid #000000;
+}
+
+.link a {
+  display: block;
+  font-family: "Roboto", sans-serif;
+  padding: 0.5rem 1rem;
+  text-decoration: initial;
+  color: #000000;
+}
+
+.link_container{
+  display: flex;
+  justify-content: center;
+}
+
+
+/* main */
+.main {
+  display: flex;
+  justify-content: center;
+  padding: 6vh 0 0 0;
+}
+
+
+/* title */
+._title {
+  display: flex;
+  align-items: center;
+  margin-top: 0.5rem;
+  padding: 0.2rem;
+  min-width: 7rem;
   font-size: 1.3rem;
+  font-weight: 800;
+  overflow-wrap: break-word;
   text-align: center;
+}
+._title a {
+  display: block;
+  padding: 0.5rem 1rem;
+  text-decoration: initial;
+  color: #000000;
+}
+
+
+/* form */
+._form {
+  display: flex;
+  flex-direction: column;
+  align-items: center;
+  width: 50%;
+}
+
+._form_buttons {
+  margin-top: 0.5rem;
+  display: flex;
+  justify-content: center;
+  align-items: center;
+}
+
+
+/* message */
+.messages {
+  position: fixed;
+  top: 0.5rem;
+  right: -15rem;
+  width: 15rem;
+  z-index: 4;
+  transition: 0.4s ease-in-out;
+}
+.messages.active {
+  right: 0.5rem;
+  opacity: 1;
+  transition: 0.4s ease;
+}
+
+.message {
+  position: relative;
+  top: 0.5rem;
+  right: -15rem;
+  width: 15rem;
+  padding: 1rem;
+  background-color: #eaeaea;
   border-bottom: 0.1rem solid #000000;
   box-shadow: 0 0 0.3rem 0.05rem #b3b3b3;
   opacity: 0;
   transition: 0.4s ease-in-out;
-  z-index: 4;
+  margin: 0.5rem 0;
 }
+
 .message.active {
-  top: 0;
+  right: 0.5rem;
   opacity: 1;
   transition: 0.4s ease;
 }
+
+.message span {
+  font-family: "Roboto", sans-serif;
+  color: #b61a1a;
+  font-size: 1rem;
+  text-align: center;
+}
+
+.message_close {
+  position: absolute;
+  top: 0.8rem;
+  right: 0.8rem;
+  cursor: pointer;
+}
+
+
+/* loading */
 .loading {
   position: fixed;
   left: 0;
@@ -248,6 +301,7 @@ textarea.input_element.large {
   background-color: #ffffffda;
   z-index: 2;
 }
+
 .loading_small {
   position: fixed;
   left: 0;
@@ -261,10 +315,57 @@ textarea.input_element.large {
   margin: 0;
   background-color: #ffffffda;
 }
-.loading_img {
+
+/* icon */
+.icon {
   width: 3rem;
 }
-.loading_img.small {
-  width: 1.5rem;
-  height: 1.5rem;
+
+.icon.small {
+  width: 1.3rem;
+  height: 1.3rem;
+}
+
+
+
+/* non used */
+.card {
+  position: relative;
+  display: flex;
+  justify-content: space-between;
+  min-height: 13rem;
+  width: 40rem;
+  padding: 1rem 0.5rem 1rem 0.5rem;
+  margin-top: 1rem;
+  background-color: #f5f5f5;
+  transition: 0.3s ease;
+  overflow: hidden;
+  opacity: 0.1;
+}
+.card:hover {
+  box-shadow: 0 0 0.3rem 0.05rem #b3b3b3;
+}
+.card:hover .button_section {
+  bottom: 4%;
+  opacity: 1;
+}
+.card.deleted {
+  visibility: hidden;
+}
+.card.animated {
+  background-color: #e5e5e5;
+  opacity: 1;
+}
+
+.list.large {
+  font-size: 1.3rem;
+}
+
+.card_description {
+  min-width: 30rem;
+  margin-left: 1.5rem;
+  font-size: 0.9rem;
+  text-align: right;
+  overflow-wrap: break-word;
+  font-family: "Roboto", sans-serif;
 }

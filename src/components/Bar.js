@@ -1,22 +1,29 @@
 import React from "react";
-import ArrowUp from '../icon/arrow_up.png'
+import ArrowUp from "../icon/arrow_up.png";
+import { Link } from "react-router-dom";
 
-const Bar = ({setOpenModal, onDeleteAll}) => {
+const Bar = ({ onDeleteAll }) => {
   return (
     <>
-    <div className="bar">
-      <p className="card_title">By Vahan Muradyan</p>
-      <div>
-        <button className="card_button" onClick={()=>{setOpenModal(prev => !prev)}}>Create</button>
-        <button className="card_button" onClick={onDeleteAll}>Delete All</button>
+      <div className="bar">
+        <p className="_title">
+          <Link to="/">Eco-Market</Link>
+        </p>
+        <div className={"link_container"}>
+          <li className="link">
+            <Link to="/register">Registration</Link>
+          </li>
+          <li className="link" onClick={onDeleteAll}>
+            <Link to="/login">Log in</Link>
+          </li>
+        </div>
+        <div className="in_bar">
+          <img src={ArrowUp} alt="GO HERE!" className="icon small" />
+        </div>
       </div>
-      <div className="in_bar">
-      <img src={ArrowUp} alt = "[Click Here]" className="loading_img small"></img>
-    </div>
-    </div>
-    <div className="hide">
-      <img src={ArrowUp} alt = "[Click Here]" className="loading_img small"></img>
-    </div>
+      <div className="hide">
+        <img src={ArrowUp} alt="GO HERE!" className="icon small" />
+      </div>
     </>
   );
 };

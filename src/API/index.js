@@ -2,13 +2,16 @@ import axios from "axios";
 import EndpointFactory from "axios-endpoints";
 
 const axiosInstance = axios.create({
-  baseURL: "https://todo.eachbase.com/api/VahanMuradyan/",
+  baseURL: "http://52.15.67.16:8080",
   responseType: "json",
+  headers: {
+    'Access-Control-Allow-Origin': '*',
+    "Access-Control-Allow-Methods": "POST",
+  },
 });
 
 const Endpoint = EndpointFactory(axiosInstance);
 const Endpoints = {
-  getOrPostTodos: new Endpoint("todos"),
-  patchOrDeleteTodos: (id) => new Endpoint("todos/" + id),
+  register: new Endpoint("register"),
 }
 export default  Endpoints;
