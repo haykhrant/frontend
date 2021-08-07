@@ -1,16 +1,23 @@
-import React, { useState } from "react";
+import React, { useEffect, useState } from "react";
 import { connect } from "react-redux";
 import { registerThunk } from "../../thunks/auth.thunk";
 
 import Modal from "../../components/Modal";
+import { useLocation } from "react-router-dom";
 
 const Registration = ({ register, isOpen, setIsOpen }) => {
+  const { pathname } = useLocation();
+
   const [postRegistration, setPostRegistration] = useState({
     fullname: "",
     username: "",
     password: "",
   });
   const [loading, setLoading] = useState(false);
+
+  useEffect(() => {
+    pathname === "/register" && setIsOpen(true);
+  }, [pathname]);
 
   const handleChange = (event) => {
     setPostRegistration((prev) => ({
@@ -24,10 +31,13 @@ const Registration = ({ register, isOpen, setIsOpen }) => {
     setLoading(false);
   };
 
-  const onClose = () => setIsOpen(false);
-
   return (
-    <Modal loading={loading} name={"Registration"} isOpen={isOpen}>
+    <Modal
+      loading={loading}
+      name={"Registration"}
+      isOpen={isOpen}
+      setIsOpen={setIsOpen}
+    >
       <input
         className={"_input"}
         name={"fullname"}
@@ -53,9 +63,6 @@ const Registration = ({ register, isOpen, setIsOpen }) => {
         <button className={"_button"} onClick={handleClick}>
           Register
         </button>
-        <button className={"_button"} onClick={onClose}>
-          Cancel
-        </button>
       </div>
     </Modal>
   );
@@ -70,7 +77,6 @@ const mapDispatchToProps = (dispatch) => {
   return {
     register: async (data) => {
       await dispatch(registerThunk(data));
-      console.log(data);
     },
   };
 };

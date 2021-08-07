@@ -1,15 +1,31 @@
-import React, { useEffect} from "react";
+import React, { useEffect, useState } from "react";
+import CrossIcon from "../icon/cross_button.png";
 
+const Message = ({ message, time }) => {
+  const [open, setOpen] = useState(false);
 
-const Message = ({ isOpen, setIsOpenMessage, onMessage}) => {
-  useEffect(()=>{
-      setTimeout(() => {
-        setIsOpenMessage(false)
-  }, 1500);
-  }, [isOpen])
+  useEffect(() => {
+    setOpen(true);
+    const _time = setTimeout(() => {
+      setOpen(false);
+    }, time);
+
+    return () => {
+      clearTimeout(_time);
+    };
+  }, []);
+
+  const onClose = () => {
+    setOpen(false);
+  };
 
   return (
-    <span className={isOpen ? "message active" : "message"}>{onMessage}</span>
+    <div className={open ? "message active" : "message"}>
+      <span>{message.text}</span>
+      <div className="message_close" onClick={onClose}>
+        <img src={CrossIcon} alt="Close" className="icon small" />
+      </div>
+    </div>
   );
 };
 

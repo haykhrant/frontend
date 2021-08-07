@@ -1,4 +1,4 @@
-import React, { useEffect, useState } from "react";
+import React from "react";
 import LoadingIcon from "../icon/loading.gif";
 const AcceptModal = ({ text, isOpen, setIsOpen, onAccept, loading }) => {
   const onAcceptAsync = async () => {
@@ -10,11 +10,7 @@ const AcceptModal = ({ text, isOpen, setIsOpen, onAccept, loading }) => {
         <span className="card_title input_element red">{text}</span>
         {loading && (
           <div className="input_element loading_small">
-            <img
-              src={LoadingIcon}
-              alt="Loading..."
-              className="loading_img small"
-            ></img>
+            <img src={LoadingIcon} alt="Loading..." className="icon small" />
           </div>
         )}
         <div className="input_element">
