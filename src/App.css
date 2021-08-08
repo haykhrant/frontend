@@ -243,19 +243,15 @@ span._input.red {
 .messages {
   position: fixed;
   top: 0.5rem;
-  right: -15rem;
-  z-index: 4;
-}
-.messages.active {
   right: 0.5rem;
-  opacity: 1;
+  z-index: 4;
+  transition: 0.3s ease;
 }
 
 .message {
   position: relative;
   display: flex;
   justify-content: space-between;
-  top: 0.5rem;
   right: -15rem;
   width: 15rem;
   padding: 1rem;
@@ -270,6 +266,11 @@ span._input.red {
   right: 0.5rem;
   opacity: 1;
   transition: 0.4s ease;
+}
+
+.message.shown {
+  position: absolute;
+  transition: 0.3s ease;
 }
 
 .message span {

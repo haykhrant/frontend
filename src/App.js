@@ -1,4 +1,4 @@
-import React, { useEffect, useState } from "react";
+import React from "react";
 import { HashRouter as Router, Route, Switch } from "react-router-dom";
 import { connect } from "react-redux";
 
@@ -12,12 +12,6 @@ import "./App.css";
 import NotFound from "./components/NotFound404";
 
 function App(props) {
-  const [isOpenMessage, setIsOpenMessage] = useState(false);
-
-  useEffect(() => {
-    setIsOpenMessage(true);
-  }, [props.messages]);
-
   return (
     <>
       <Router>
@@ -35,14 +29,7 @@ function App(props) {
           </Route>
         </Switch>
       </Router>
-      {isOpenMessage && (
-        <Messages
-          isOpen={isOpenMessage}
-          setIsOpenMessage={setIsOpenMessage}
-          messages={props.messages}
-          time={2500}
-        />
-      )}
+      <Messages messages={props.messages} time={2500} />
     </>
   );
 }

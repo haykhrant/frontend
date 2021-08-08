@@ -3,15 +3,25 @@ import CrossIcon from "../icon/cross_button.png";
 
 const Message = ({ message, time }) => {
   const [open, setOpen] = useState(false);
+  const [shown, setShown] = useState(false);
 
   useEffect(() => {
-    setOpen(true);
-    const _time = setTimeout(() => {
+    const _timeStart = setTimeout(() => {
+      setOpen(true);
+    });
+
+    const _timeEnd = setTimeout(() => {
       setOpen(false);
+    }, time - 300);
+
+    const _timeShown = setTimeout(() => {
+      setShown(true);
     }, time);
 
     return () => {
-      clearTimeout(_time);
+      clearTimeout(_timeEnd);
+      clearTimeout(_timeStart);
+      clearTimeout(_timeShown);
     };
   }, [time]);
 
@@ -20,7 +30,9 @@ const Message = ({ message, time }) => {
   };
 
   return (
-    <div className={open ? "message active" : "message"}>
+    <div
+      className={open ? "message active" : shown ? "message shown" : "message"}
+    >
       <span>{message.text}</span>
       <div className="message_close" onClick={onClose}>
         <img src={CrossIcon} alt="Close" className="icon small" />

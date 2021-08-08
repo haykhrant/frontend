@@ -3,23 +3,21 @@ import Message from "./Message";
 import { emptyMessages } from "../actions";
 import { useDispatch } from "react-redux";
 
-const Messages = ({ isOpen, setIsOpenMessage, messages, time }) => {
+const Messages = ({ messages, time }) => {
   const dispatch = useDispatch();
+
   useEffect(() => {
-    if (!messages.length) {
-      setIsOpenMessage(false);
-      return;
-    }
     const _timeDispatch = setTimeout(() => {
       dispatch(emptyMessages([]));
-    }, time + 200);
+    }, time);
+
     return () => {
       clearTimeout(_timeDispatch);
     };
-  }, [messages, setIsOpenMessage, dispatch, time]);
+  }, [messages, dispatch, time]);
 
   return (
-    <div className={isOpen ? "messages active" : "messages"}>
+    <div className={"messages"}>
       {messages.map((message) => (
         <Message
           key={message.id}
