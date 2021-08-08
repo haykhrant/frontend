@@ -22,7 +22,7 @@ const Messages = ({ isOpen, setIsOpenMessage, messages, time }) => {
     <div className={isOpen ? "messages active" : "messages"}>
       {messages.map((message) => (
         <Message
-          key={message.date}
+          key={message.id}
           message={message}
           messages={messages}
           time={time}

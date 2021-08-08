@@ -1,10 +1,14 @@
 import React, { useEffect, useState } from "react";
-import { connect } from "react-redux";
-import "./App.css";
-import Bar from "./components/Bar";
-import { Registration } from "./screens/Registration";
 import { HashRouter as Router, Route, Switch } from "react-router-dom";
+import { connect } from "react-redux";
+
+import Bar from "./components/Bar";
 import Messages from "./components/Messages";
+
+import { Registration } from "./screens/Registration";
+import { Login } from "./screens/Login";
+
+import "./App.css";
 
 function App(props) {
   const [isOpen, setIsOpen] = useState(false);
@@ -14,7 +18,7 @@ function App(props) {
     if (props.messageDate) {
       setIsOpenMessage(true);
     }
-  }, [props.messageDate]);
+  }, [props.messages]);
 
   return (
     <>
@@ -22,13 +26,14 @@ function App(props) {
         <Bar setOpenModal={setIsOpen} />
         <Switch>
           <Route path="/register">
-            <Registration isOpen={isOpen} setIsOpen={setIsOpen} />
+            <Registration />
           </Route>
-          <Route path="/login"/>
-          <Route path="/"/>
+          <Route path="/login">
+            <Login />
+          </Route>
+          <Route path="/" />
         </Switch>
       </Router>
-      {/*<Registration isOpen={isOpen} setIsOpen={setIsOpen} />*/}
       {isOpenMessage && (
         <Messages
           isOpen={isOpenMessage}

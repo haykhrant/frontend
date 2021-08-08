@@ -18,11 +18,11 @@ const Bar = ({ onDeleteAll }) => {
           </li>
         </div>
         <div className="in_bar">
-          <img src={ArrowUp} alt="GO HERE!" className="icon small" />
+          <img src={ArrowUp} alt="GO HERE!" className="icon middle" />
         </div>
       </div>
       <div className="hide">
-        <img src={ArrowUp} alt="GO HERE!" className="icon small" />
+        <img src={ArrowUp} alt="GO HERE!" className="icon middle" />
       </div>
     </>
   );

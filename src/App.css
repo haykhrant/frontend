@@ -46,7 +46,6 @@ body,
   opacity: 0;
   transition: 0.1s ease-in-out;
   border-bottom: 0.1rem solid #000000;
-  box-shadow: 0 0 0.3rem 0.05rem #b3b3b3;
 }
 .bar:hover {
   top: 0;
@@ -163,11 +162,10 @@ span._input.red {
 
 ._button:hover {
   border-bottom: 0.09rem solid #000000;
-  box-shadow: 0 0 0.2rem 0.05rem #b3b3b3;
+
 }
 ._button:active {
-  border-bottom: 0.09rem solid #646464;
-  box-shadow: 0 0 0.05rem 0.1rem #b3b3b3;
+  border-bottom: 0.09rem solid #ffffff;
 }
 
 /* link */
@@ -175,6 +173,7 @@ span._input.red {
   display: block;
   margin: 0 0.5rem;
   border-bottom: 0.1rem solid transparent;
+  transition: 0.3s ease;
 }
 
 .link:hover{
@@ -207,6 +206,7 @@ span._input.red {
 ._title {
   display: flex;
   align-items: center;
+  justify-content: center;
   margin-top: 0.5rem;
   padding: 0.2rem;
   min-width: 7rem;
@@ -244,28 +244,26 @@ span._input.red {
   position: fixed;
   top: 0.5rem;
   right: -15rem;
-  width: 15rem;
   z-index: 4;
-  transition: 0.4s ease-in-out;
 }
 .messages.active {
   right: 0.5rem;
   opacity: 1;
-  transition: 0.4s ease;
 }
 
 .message {
   position: relative;
+  display: flex;
+  justify-content: space-between;
   top: 0.5rem;
   right: -15rem;
   width: 15rem;
   padding: 1rem;
+  margin: 0.5rem 0;
   background-color: #eaeaea;
-  border-bottom: 0.1rem solid #000000;
-  box-shadow: 0 0 0.3rem 0.05rem #b3b3b3;
+  border: 0.1rem solid #000000;
   opacity: 0;
   transition: 0.4s ease-in-out;
-  margin: 0.5rem 0;
 }
 
 .message.active {
@@ -278,13 +276,11 @@ span._input.red {
   font-family: "Roboto", sans-serif;
   color: #b61a1a;
   font-size: 1rem;
-  text-align: center;
+  overflow-wrap: break-word;
+  overflow: hidden;
 }
 
 .message_close {
-  position: absolute;
-  top: 0.8rem;
-  right: 0.8rem;
   cursor: pointer;
 }
 
@@ -321,11 +317,15 @@ span._input.red {
   width: 3rem;
 }
 
-.icon.small {
+.icon.middle {
   width: 1.3rem;
   height: 1.3rem;
 }
 
+.icon.small {
+  width: 0.8rem;
+  height: 0.8rem;
+}
 
 
 /* non used */

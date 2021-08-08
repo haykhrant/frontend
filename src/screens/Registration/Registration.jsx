@@ -5,7 +5,8 @@ import { registerThunk } from "../../thunks/auth.thunk";
 import Modal from "../../components/Modal";
 import { useLocation } from "react-router-dom";
 
-const Registration = ({ register, isOpen, setIsOpen }) => {
+const Registration = ({ register }) => {
+  const [isOpen, setIsOpen] = useState(false);
   const { pathname } = useLocation();
 
   const [postRegistration, setPostRegistration] = useState({

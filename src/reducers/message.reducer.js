@@ -1,3 +1,5 @@
+import { v1 as uuidv1 } from "uuid";
+
 const initialState = {
   messages: [],
   messageDate: "",
@@ -8,10 +10,7 @@ export default function messageReducer(state = initialState, action) {
     case "ADD_MESSAGE":
       return {
         ...state,
-        messages: [
-          ...state.messages,
-          { text: action.payload, date: new Date() },
-        ],
+        messages: [...state.messages, { text: action.payload, id: uuidv1() }],
         messageDate: new Date(),
       };
     case "EMPTY_MESSAGES":

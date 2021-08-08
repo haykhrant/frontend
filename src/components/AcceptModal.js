@@ -10,7 +10,7 @@ const AcceptModal = ({ text, isOpen, setIsOpen, onAccept, loading }) => {
         <span className="card_title input_element red">{text}</span>
         {loading && (
           <div className="input_element loading_small">
-            <img src={LoadingIcon} alt="Loading..." className="icon small" />
+            <img src={LoadingIcon} alt="Loading..." className="icon middle" />
           </div>
         )}
         <div className="input_element">

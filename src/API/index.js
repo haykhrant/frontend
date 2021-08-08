@@ -5,7 +5,7 @@ const axiosInstance = axios.create({
   baseURL: "http://52.15.67.16:8080",
   responseType: "json",
   headers: {
-    'Access-Control-Allow-Origin': '*',
+    "Access-Control-Allow-Origin": "*",
     "Access-Control-Allow-Methods": "POST",
   },
 });
@@ -13,5 +13,6 @@ const axiosInstance = axios.create({
 const Endpoint = EndpointFactory(axiosInstance);
 const Endpoints = {
   register: new Endpoint("register"),
-}
-export default  Endpoints;
+  login: new Endpoint("login"),
+};
+export default Endpoints;
