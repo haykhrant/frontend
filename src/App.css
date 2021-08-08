@@ -35,7 +35,7 @@ body,
 }
 .bar {
   position: fixed;
-  top: -2vh;
+  top: -2rem;
   width: 100%;
   display: flex;
   justify-content: space-around;
@@ -53,7 +53,7 @@ body,
   z-index: 3;
 }
 .bar:hover + .hide {
-  top: +3vh;
+  top: +3rem;
   opacity: 0;
 }
 
@@ -293,7 +293,7 @@ span._input.red {
   display: flex;
   align-items: center;
   justify-content: center;
-  min-height: 100vh;
+  min-height: 100%;
   background-color: #ffffffda;
   z-index: 2;
 }
@@ -325,6 +325,13 @@ span._input.red {
 .icon.small {
   width: 0.8rem;
   height: 0.8rem;
+}
+
+
+/* not found 404 */
+.not_found {
+  padding: 6rem 1rem;
+  font-family: "Roboto", sans-serif;
 }
 
 

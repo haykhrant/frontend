@@ -13,7 +13,7 @@ const Message = ({ message, time }) => {
     return () => {
       clearTimeout(_time);
     };
-  }, []);
+  }, [time]);
 
   const onClose = () => {
     setOpen(false);

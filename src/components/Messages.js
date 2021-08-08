@@ -16,7 +16,7 @@ const Messages = ({ isOpen, setIsOpenMessage, messages, time }) => {
     return () => {
       clearTimeout(_timeDispatch);
     };
-  }, [messages]);
+  }, [messages, setIsOpenMessage, dispatch, time]);
 
   return (
     <div className={isOpen ? "messages active" : "messages"}>

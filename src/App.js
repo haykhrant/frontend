@@ -9,29 +9,30 @@ import { Registration } from "./screens/Registration";
 import { Login } from "./screens/Login";
 
 import "./App.css";
+import NotFound from "./components/NotFound404";
 
 function App(props) {
-  const [isOpen, setIsOpen] = useState(false);
   const [isOpenMessage, setIsOpenMessage] = useState(false);
 
   useEffect(() => {
-    if (props.messageDate) {
-      setIsOpenMessage(true);
-    }
+    setIsOpenMessage(true);
   }, [props.messages]);
 
   return (
     <>
       <Router>
-        <Bar setOpenModal={setIsOpen} />
+        <Bar />
         <Switch>
+          <Route exact path="/" />
           <Route path="/register">
             <Registration />
           </Route>
           <Route path="/login">
             <Login />
           </Route>
-          <Route path="/" />
+          <Route path="/*">
+            <NotFound />
+          </Route>
         </Switch>
       </Router>
       {isOpenMessage && (

@@ -2,7 +2,7 @@ import React from "react";
 import ArrowUp from "../icon/arrow_up.png";
 import { Link } from "react-router-dom";
 
-const Bar = ({ onDeleteAll }) => {
+const Bar = () => {
   return (
     <>
       <div className="bar">
@@ -13,7 +13,7 @@ const Bar = ({ onDeleteAll }) => {
           <li className="link">
             <Link to="/register">Registration</Link>
           </li>
-          <li className="link" onClick={onDeleteAll}>
+          <li className="link">
             <Link to="/login">Log in</Link>
           </li>
         </div>
