@@ -1,9 +1,12 @@
 import React, { useEffect, useState } from "react";
 import CrossIcon from "../icon/cross_button.png";
+import { useDispatch } from "react-redux";
+import { filterMessages } from "../actions";
 
 const Message = ({ message, time }) => {
+  const dispatch = useDispatch();
+
   const [open, setOpen] = useState(false);
-  const [shown, setShown] = useState(false);
 
   useEffect(() => {
     const _timeStart = setTimeout(() => {
@@ -14,25 +17,23 @@ const Message = ({ message, time }) => {
       setOpen(false);
     }, time - 300);
 
-    const _timeShown = setTimeout(() => {
-      setShown(true);
+    const _timeDelete = setTimeout(() => {
+      dispatch(filterMessages(message.id));
     }, time);
 
     return () => {
       clearTimeout(_timeEnd);
       clearTimeout(_timeStart);
-      clearTimeout(_timeShown);
+      clearTimeout(_timeDelete);
     };
-  }, [time]);
+  }, [time, dispatch, message.id]);
 
   const onClose = () => {
     setOpen(false);
   };
 
   return (
-    <div
-      className={open ? "message active" : shown ? "message shown" : "message"}
-    >
+    <div className={open ? "message active" : "message"}>
       <span>{message.text}</span>
       <div className="message_close" onClick={onClose}>
         <img src={CrossIcon} alt="Close" className="icon small" />

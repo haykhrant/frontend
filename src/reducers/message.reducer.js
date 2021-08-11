@@ -19,6 +19,11 @@ export default function messageReducer(state = initialState, action) {
         messages: action.payload,
         messageDate: "",
       };
+    case "FILTER_MESSAGES":
+      return {
+        ...state,
+        messages: state.messages.filter((mes) => mes.id !== action.payload),
+      };
     default:
       return state;
   }

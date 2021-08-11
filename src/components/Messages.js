@@ -1,30 +1,14 @@
-import React, { useEffect } from "react";
+import React from "react";
 import Message from "./Message";
-import { emptyMessages } from "../actions";
-import { useDispatch } from "react-redux";
+import { useSelector } from "react-redux";
 
-const Messages = ({ messages, time }) => {
-  const dispatch = useDispatch();
-
-  useEffect(() => {
-    const _timeDispatch = setTimeout(() => {
-      dispatch(emptyMessages([]));
-    }, time);
-
-    return () => {
-      clearTimeout(_timeDispatch);
-    };
-  }, [messages, dispatch, time]);
+const Messages = ({ time }) => {
+  const messages = useSelector((state) => state.message.messages);
 
   return (
     <div className={"messages"}>
       {messages.map((message) => (
-        <Message
-          key={message.id}
-          message={message}
-          messages={messages}
-          time={time}
-        />
+        <Message key={message.id} message={message} time={time} />
       ))}
     </div>
   );

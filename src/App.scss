@@ -1,60 +1,49 @@
+$root_color : #f3f3f3;
+$main_color: #eaeaea;
+$white_opacity: #ffffffda;
+$red_message: #c02525;
+$_black: #000000;
+$_white: #ffffff;
+
+$default_font: "Lobster Two", cursive;
+$second_font: "Roboto", sans-serif;
+
+$font_size_middle: 1rem;
+$font_size_small: 0.8rem;
+$font_size_large: 1.3rem;
+
+$default_transition: 0.15s ease-in-out;
+
 /* app */
 * {
   margin: 0;
   padding: 0;
+  border: 0;
   box-sizing: border-box;
-  font-family: "Lobster Two", cursive;
+  user-select: none;
+  font-family: $default_font;
 }
 
 html,
 body,
 #root {
   min-height: 100vh;
-  background-color: #f3f3f3;
+  background-color: $root_color;
   z-index: 1;
 }
 
 /* bar */
-.hide {
-  position: fixed;
-  top: 0;
-  width: 100%;
-  display: flex;
-  justify-content: center;
-  background-color: #eaeaea;
-  transition: 0.1s ease-in-out;
-  opacity: 1;
-  border-bottom: 0.1rem solid #000000;
-  padding: 0.2rem 2rem;;
-  z-index: 1;
-  overflow: hidden;
-}
-.in_bar {
-  position: absolute;
-  bottom: 0;
-}
 .bar {
   position: fixed;
-  top: -2rem;
+  top: 0;
   width: 100%;
   display: flex;
   justify-content: space-around;
   align-items: center;
-  background-color: #eaeaea;
+  background-color: $main_color;
+  border-bottom: 0.1rem solid $_black;
   padding: 1rem 2rem;
-  z-index: 2;
-  opacity: 0;
-  transition: 0.1s ease-in-out;
-  border-bottom: 0.1rem solid #000000;
-}
-.bar:hover {
-  top: 0;
-  opacity: 1;
   z-index: 3;
-}
-.bar:hover + .hide {
-  top: +3rem;
-  opacity: 0;
 }
 
 /* modal */
@@ -67,15 +56,15 @@ body,
   width: 100%;
   display: flex;
   justify-content: center;
-  background-color: #ffffffda;
+  background-color: $white_opacity;
   opacity: 0;
   overflow: hidden;
   z-index: -1;
-  transition: 0.2s ease;
+  transition: $default_transition;
 }
 .modal.active {
   z-index: 4;
-  transition: 0.1s ease;
+  transition: $default_transition;
   opacity: 1;
 }
 .modal ._container {
@@ -90,16 +79,17 @@ body,
   flex-direction: column;
   padding: 1rem 2em;
   opacity: 0;
-  background-color: #f3f3f3;
-  border: 0.1rem solid #000000;
+  background-color: $root_color;
+  border: 0.1rem solid $_black;
   transform: translate(-50%, -40%);
-  transition: 0.2s ease;
+  transition: $default_transition;
 }
 .modal.active ._container {
   opacity: 1;
   top: 40%;
-  transition: 0.1s ease;
+  transition: $default_transition;
 }
+
 
 .modal_close {
   position: absolute;
@@ -112,9 +102,9 @@ body,
 ._input {
   display: flex;
   justify-content: center;
-  font-family: "Roboto", sans-serif;
+  font-family: $second_font;
   margin-top: 0.5rem;
-  padding: 0.2rem;
+  padding: 0.2rem 1rem;
   min-height: 2.5rem;
   width: 70%;
   outline: none;
@@ -124,12 +114,12 @@ span._input {
 }
 span._input.red {
   text-align: center;
-  color: #b22222;
+  color: $red_message;
 }
 
 /*input._input,*/
 /*textarea._input {*/
-/*  font-family: "Roboto", sans-serif;*/
+/*  font-family: $second_font;*/
 /*  font-weight: 700;*/
 /*}*/
 /*textarea._input.large {*/
@@ -144,28 +134,28 @@ span._input.red {
   display: flex;
   justify-content: space-evenly;
   opacity: 0;
-  transition: 0.1s ease;
+  transition: $default_transition;
 }
 ._button {
   padding: 0.5rem 1rem;
   margin-left: 0.5rem;
   border: 0;
-  outline: none;
-  background-color: #ffffff;
-  font-size: 0.9rem;
+  background-color: $_white;
+  font-size: $font_size_small;
   font-weight: 600;
-  font-family: "Roboto", sans-serif;
+  font-family: $second_font;
   cursor: pointer;
-  transition: 0.3s ease;
-  border-bottom: 0.09rem solid #ffffff;
+  transition: $default_transition;
+  border-bottom: 0.09rem solid $_white;
+  outline: none;
 }
 
 ._button:hover {
-  border-bottom: 0.09rem solid #000000;
+  border-bottom: 0.09rem solid $_black;
 
 }
 ._button:active {
-  border-bottom: 0.09rem solid #ffffff;
+  border-bottom: 0.09rem solid $_white;
 }
 
 /* link */
@@ -173,19 +163,20 @@ span._input.red {
   display: block;
   margin: 0 0.5rem;
   border-bottom: 0.1rem solid transparent;
-  transition: 0.3s ease;
+  transition: $default_transition;
 }
 
 .link:hover{
-  border-bottom: 0.1rem solid #000000;
+  border-bottom: 0.1rem solid $_black;
+  transition: $default_transition;
 }
 
 .link a {
   display: block;
-  font-family: "Roboto", sans-serif;
+  font-family: $second_font;
   padding: 0.5rem 1rem;
   text-decoration: initial;
-  color: #000000;
+  color: $_black;
 }
 
 .link_container{
@@ -196,9 +187,9 @@ span._input.red {
 
 /* main */
 .main {
+  position: relative;
   display: flex;
-  justify-content: center;
-  padding: 6vh 0 0 0;
+  padding: 6rem 0 0 0;
 }
 
 
@@ -207,10 +198,7 @@ span._input.red {
   display: flex;
   align-items: center;
   justify-content: center;
-  margin-top: 0.5rem;
-  padding: 0.2rem;
-  min-width: 7rem;
-  font-size: 1.3rem;
+  font-size: $font_size_large;
   font-weight: 800;
   overflow-wrap: break-word;
   text-align: center;
@@ -219,7 +207,7 @@ span._input.red {
   display: block;
   padding: 0.5rem 1rem;
   text-decoration: initial;
-  color: #000000;
+  color: $_black;
 }
 
 
@@ -245,7 +233,7 @@ span._input.red {
   top: 0.5rem;
   right: 0.5rem;
   z-index: 4;
-  transition: 0.3s ease;
+  transition: $default_transition;
 }
 
 .message {
@@ -256,33 +244,103 @@ span._input.red {
   width: 15rem;
   padding: 1rem;
   margin: 0.5rem 0;
-  background-color: #eaeaea;
-  border: 0.1rem solid #000000;
+  background-color: $main_color;
+  border: 0.1rem solid $_black;
   opacity: 0;
-  transition: 0.4s ease-in-out;
+  transition: $default_transition;
 }
 
 .message.active {
   right: 0.5rem;
   opacity: 1;
-  transition: 0.4s ease;
-}
-
-.message.shown {
-  position: absolute;
-  transition: 0.3s ease;
 }
 
 .message span {
-  font-family: "Roboto", sans-serif;
+  font-family: $second_font;
   color: #b61a1a;
-  font-size: 1rem;
+  font-size: $font_size_middle;
   overflow-wrap: break-word;
   overflow: hidden;
 }
 
 .message_close {
   cursor: pointer;
+}
+
+
+/* category */
+.categories{
+  display: flex;
+  flex-direction: column;
+  width: 100%;
+  z-index: 0;
+}
+
+.category{
+  display: flex;
+  flex-direction: column;
+  overflow: hidden;
+  margin-top: 0.5rem;
+}
+
+.category.active {
+  overflow: visible;
+}
+
+.category.active .subCategories {
+  height: 10rem;
+  overflow: auto;
+  opacity: 1;
+  z-index: 1;
+}
+
+.category_text{
+  display: flex;
+  justify-content: space-between;
+  background-color: $main_color;
+  padding: 1rem;
+  width: 100%;
+  cursor: pointer;
+  transition: $default_transition;
+}
+
+.category_text:hover{
+  background-color: #cdcdcd;
+}
+.category_text img {
+  transition: $default_transition;
+}
+
+.category.active .category_text img {
+  transform: rotate(180deg);
+  transition: $default_transition;
+}
+
+.subCategories {
+  height: 0;
+  display: flex;
+  flex-direction: column;
+  opacity: 0;
+  transition: $default_transition;
+  z-index: -1;
+}
+
+.subCategories:hover{
+  opacity: 1;
+}
+
+.subCategory{
+  padding: 1rem;
+  margin: 0 1rem;
+  cursor: pointer;
+  border-bottom: 0.1rem solid transparent;
+  font-family: $second_font;
+  transition: $default_transition;
+}
+
+.subCategory:hover{
+  border-bottom: 0.1rem solid $_black;
+  transition: $default_transition;
 }
 
 
@@ -295,7 +353,7 @@ span._input.red {
   align-items: center;
   justify-content: center;
   min-height: 100%;
-  background-color: #ffffffda;
+  background-color: $white_opacity;
   z-index: 2;
 }
 
@@ -310,7 +368,7 @@ span._input.red {
   width: 100%;
   padding: 0;
   margin: 0;
-  background-color: #ffffffda;
+  background-color: $white_opacity;
 }
 
 /* icon */
@@ -332,7 +390,7 @@ span._input.red {
 /* not found 404 */
 .not_found {
   padding: 6rem 1rem;
-  font-family: "Roboto", sans-serif;
+  font-family: $second_font;
 }
 
 
@@ -346,7 +404,7 @@ span._input.red {
   padding: 1rem 0.5rem 1rem 0.5rem;
   margin-top: 1rem;
   background-color: #f5f5f5;
-  transition: 0.3s ease;
+  transition: $default_transition;
   overflow: hidden;
   opacity: 0.1;
 }
@@ -366,14 +424,14 @@ span._input.red {
 }
 
 .list.large {
-  font-size: 1.3rem;
+  font-size: $font_size_large;
 }
 
 .card_description {
   min-width: 30rem;
   margin-left: 1.5rem;
-  font-size: 0.9rem;
+  font-size: $font_size_small;
   text-align: right;
   overflow-wrap: break-word;
-  font-family: "Roboto", sans-serif;
+  font-family: $second_font;
 }

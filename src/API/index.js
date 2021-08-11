@@ -2,7 +2,7 @@ import axios from "axios";
 import EndpointFactory from "axios-endpoints";
 
 const axiosInstance = axios.create({
-  baseURL: "http://52.15.67.16:8080",
+  baseURL: "http://18.119.99.114:8080",
   responseType: "json",
   headers: {
     "Access-Control-Allow-Origin": "*",

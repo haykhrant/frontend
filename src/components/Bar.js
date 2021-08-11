@@ -1,30 +1,21 @@
 import React from "react";
-import ArrowUp from "../icon/arrow_up.png";
 import { Link } from "react-router-dom";
 
 const Bar = () => {
   return (
-    <>
-      <div className="bar">
-        <p className="_title">
-          <Link to="/">Eco-Market</Link>
-        </p>
-        <div className={"link_container"}>
-          <li className="link">
-            <Link to="/register">Registration</Link>
-          </li>
-          <li className="link">
-            <Link to="/login">Log in</Link>
-          </li>
-        </div>
-        <div className="in_bar">
-          <img src={ArrowUp} alt="GO HERE!" className="icon middle" />
-        </div>
+    <div className="bar">
+      <p className="_title">
+        <Link to="/">Eco-Market</Link>
+      </p>
+      <div className={"link_container"}>
+        <li className="link">
+          <Link to="/register">Registration</Link>
+        </li>
+        <li className="link">
+          <Link to="/login">Log in</Link>
+        </li>
       </div>
-      <div className="hide">
-        <img src={ArrowUp} alt="GO HERE!" className="icon middle" />
-      </div>
-    </>
+    </div>
   );
 };
 
