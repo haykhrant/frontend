@@ -1,4 +1,4 @@
-import React, { useEffect, useState } from "react";
+import React, { useState } from "react";
 import Arrow from "../icon/up_arrow.png";
 
 const Categories = ({ categories }) => {
@@ -19,16 +19,17 @@ const Categories = ({ categories }) => {
     }));
   };
 
-  useEffect(() => {
-    console.log(activeCategories);
-  }, [activeCategories]);
   return (
     <div className={"categories"}>
       {categories.map((category) => (
         <div
           key={category.id}
           className={
-            activeCategories[category.id] ? "category active" : "category"
+            activeCategories[category.id]
+              ? category.subCategories.length
+                ? "category active"
+                : "category active empty"
+              : "category"
           }
         >
           <div
@@ -41,11 +42,15 @@ const Categories = ({ categories }) => {
 
           <div />
           <div className={"subCategories"}>
-            {category.subCategories.map((sCategory) => (
-              <div key={sCategory.id} className={"subCategory"}>
-                {sCategory.name}
-              </div>
-            ))}
+            {category.subCategories.length ? (
+              category.subCategories.map((sCategory) => (
+                <div key={sCategory.id} className={"subCategory"}>
+                  {sCategory.name}
+                </div>
+              ))
+            ) : (
+              <div className={"subCategory"}>Empty</div>
+            )}
           </div>
         </div>
       ))}

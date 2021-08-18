@@ -269,79 +269,97 @@ span._input.red {
 
 
 /* category */
-.categories{
+.categories {
   display: flex;
   flex-direction: column;
   width: 100%;
   z-index: 0;
-}
 
-.category{
-  display: flex;
-  flex-direction: column;
-  overflow: hidden;
-  margin-top: 0.5rem;
-}
+  .category {
+    display: flex;
+    flex-direction: column;
+    overflow: hidden;
+    margin-top: 0.5rem;
 
-.category.active {
-  overflow: visible;
-}
+    .subCategories {
+      height: 0;
+      display: flex;
+      flex-direction: column;
+      opacity: 0;
+      transition: $default_transition;
+      z-index: -1;
 
-.category.active .subCategories {
-  height: 10rem;
-  overflow: auto;
-  opacity: 1;
-  z-index: 1;
-}
+      .subCategory {
+        padding: 1rem;
+        margin: 0 1rem;
+        cursor: pointer;
+        border-bottom: 0.1rem solid transparent;
+        font-family: $second_font;
+        transition: $default_transition;
 
-.category_text{
-  display: flex;
-  justify-content: space-between;
-  background-color: $main_color;
-  padding: 1rem;
-  width: 100%;
-  cursor: pointer;
-  transition: $default_transition;
-}
+        &:hover {
+          border-bottom: 0.1rem solid $_black;
+          transition: $default_transition;
+        }
+      }
+      &:hover {
+        opacity: 1;
+      }
+    }
 
-.category_text:hover{
-  background-color: #cdcdcd;
-}
-.category_text img {
-  transition: $default_transition;
-}
+    &.active {
+      overflow: visible;
 
-.category.active .category_text img {
-  transform: rotate(180deg);
-  transition: $default_transition;
-}
+      & .subCategories {
+        height: 10rem;
+        overflow: scroll;
+        opacity: 1;
+        z-index: 1;
+      }
 
-.subCategories {
-  height: 0;
-  display: flex;
-  flex-direction: column;
-  opacity: 0;
-  transition: $default_transition;
-  z-index: -1;
-}
+      &.empty {
+        overflow: visible;
 
-.subCategories:hover{
-  opacity: 1;
-}
+        & .subCategories {
+          height: auto;
+          overflow: hidden;
+          opacity: 1;
+          z-index: 1;
 
-.subCategory{
-  padding: 1rem;
-  margin: 0 1rem;
-  cursor: pointer;
-  border-bottom: 0.1rem solid transparent;
-  font-family: $second_font;
-  transition: $default_transition;
-}
+          .subCategory {
+            border-bottom: none;
+            color: $red_message;
+            cursor: default;
+            &:hover {
+              border-bottom: none;
+            }
+          }
+        }
+      }
+      .category_text img {
+        transform: rotate(180deg);
+        transition: $default_transition;
+      }
 
-.subCategory:hover{
-  border-bottom: 0.1rem solid $_black;
-  transition: $default_transition;
-}
+    }
+    .category_text {
+      display: flex;
+      justify-content: space-between;
+      background-color: $main_color;
+      padding: 1rem;
+      width: 100%;
+      cursor: pointer;
+      transition: $default_transition;
+
+      img {
+        transition: $default_transition;
+      }
+      &:hover {
+        background-color: #cdcdcd;
+      }
+    }
+    }
+  }
 
 
 /* loading */

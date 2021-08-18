@@ -13,7 +13,7 @@ export const registerThunk = (data) => async (dispatch) => {
     dispatch(registrationSuccess());
     dispatch(addMessage(response.data));
   } catch (err) {
-    console.error("FROM GET_THUNK", err);
+    console.error("FROM REGISTER_THUNK", err);
     if (err) {
       dispatch(registrationFailure());
       dispatch(addMessage(`${err}`));
@@ -27,7 +27,7 @@ export const loginThunk = (data) => async (dispatch) => {
     dispatch(loginSuccess());
     dispatch(addMessage(response.data));
   } catch (err) {
-    console.error("FROM GET_THUNK", err);
+    console.error("FROM LOGIN_THUNK", err);
     if (err) {
       dispatch(loginFailure());
       dispatch(addMessage(`${err}`));
