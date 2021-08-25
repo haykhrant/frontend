@@ -19,10 +19,10 @@ const Home = (props) => {
   }, [getCategories]);
 
   useEffect(() => {
-    if (categories.length) {
+    if (categoriesFromProps.length) {
       setCategories(formatCategories(categoriesFromProps));
     }
-  }, [categoriesFromProps, setCategories, categories.length]);
+  }, [categoriesFromProps, setCategories]);
 
   return (
     <div className={"main"}>
