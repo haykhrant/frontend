@@ -9,20 +9,20 @@ import "./Home.style.scss";
 import { formatCategories } from "../../utils";
 
 const Home = (props) => {
+  const { categories: categoriesFromProps, getCategories } = props;
   const [categories, setCategories] = useState([]);
   const [loading, setLoading] = useState(false);
 
   useEffect(() => {
     setLoading(true);
-    props.getCategories().then(() => setLoading(false));
-  }, []);
+    getCategories().then(() => setLoading(false));
+  }, [getCategories]);
 
   useEffect(() => {
-    const { categories } = props;
     if (categories.length) {
-      setCategories(formatCategories(categories));
+      setCategories(formatCategories(categoriesFromProps));
     }
-  }, [props.categories, setCategories]);
+  }, [categoriesFromProps, setCategories, categories.length]);
 
   return (
     <div className={"main"}>

@@ -21,12 +21,12 @@ const Categories = ({ categories }) => {
 
   return (
     <div className={"categories"}>
-      {categories.map((category) => (
+      {categories?.map((category) => (
         <div
           key={category.id}
           className={
             activeCategories[category.id]
-              ? category.subCategories.length
+              ? category.subCategories?.length
                 ? "category active"
                 : "category active empty"
               : "category"
@@ -42,8 +42,8 @@ const Categories = ({ categories }) => {
 
           <div />
           <div className={"subCategories"}>
-            {category.subCategories.length ? (
-              category.subCategories.map((sCategory) => (
+            {category.subCategories?.length ? (
+              category.subCategories?.map((sCategory) => (
                 <div key={sCategory.id} className={"subCategory"}>
                   {sCategory.name}
                 </div>

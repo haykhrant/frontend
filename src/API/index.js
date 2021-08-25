@@ -2,7 +2,7 @@ import axios from "axios";
 import EndpointFactory from "axios-endpoints";
 
 const axiosInstance = axios.create({
-  baseURL: "http://18.119.99.114:443",
+  baseURL: "https://backend.eco-market.am",
   responseType: "json",
   headers: {
     "Access-Control-Allow-Origin": "*",
