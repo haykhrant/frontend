@@ -3,7 +3,7 @@ import LoadingIcon from "../icon/loading.gif";
 import CrossIcon from "../icon/cross_button.png";
 
 const Modal = ({ name, isOpen, handleClose, loading, children }) => {
-  const goToPreviousPath = () => {
+  const onClose = () => {
     handleClose();
   };
   const onOutOfModal = (event) => {
@@ -16,7 +16,7 @@ const Modal = ({ name, isOpen, handleClose, loading, children }) => {
       onMouseDown={onOutOfModal}
     >
       <div className={"_container"}>
-        <div className="modal_close" onClick={goToPreviousPath}>
+        <div className="modal_close" onClick={onClose}>
           <img src={CrossIcon} alt="Close" className="icon middle" />
         </div>
         <span className="_title">{name}</span>

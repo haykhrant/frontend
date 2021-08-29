@@ -5,8 +5,6 @@ import Bar from "./components/Bar";
 import Messages from "./components/Messages";
 import NotFound from "./components/NotFound404";
 
-import { Registration } from "./modals/Registration";
-import { Login } from "./modals/Login";
 import { Home } from "./screens/Home";
 
 import "./App.scss";
@@ -19,12 +17,6 @@ function App() {
         <Switch>
           <Route exact path="/">
             <Home />
-          </Route>
-          <Route path="/register">
-            <Registration />
-          </Route>
-          <Route path="/login">
-            <Login />
           </Route>
           <Route path="/*">
             <NotFound />

@@ -29,7 +29,6 @@ body,
 #root {
   min-height: 100vh;
   background-color: $root_color;
-  z-index: 1;
 }
 
 /* bar */
@@ -50,53 +49,52 @@ body,
 .modal {
   position: fixed;
   top: 0;
-  left: 0;
-  right: 0;
-  bottom: 0;
+  height: 0;
   width: 100%;
   display: flex;
   justify-content: center;
   background-color: $white_opacity;
   opacity: 0;
   overflow: hidden;
-  z-index: -1;
   transition: $default_transition;
-}
-.modal.active {
-  z-index: 4;
-  transition: $default_transition;
-  opacity: 1;
-}
-.modal ._container {
-  position: absolute;
-  top: 20%;
-  left: 50%;
-  right: 0;
-  width: 40%;
-  display: flex;
-  align-items: center;
-  justify-content: center;
-  flex-direction: column;
-  padding: 1rem 2em;
-  opacity: 0;
-  background-color: $root_color;
-  border: 0.1rem solid $_black;
-  transform: translate(-50%, -40%);
-  transition: $default_transition;
-}
-.modal.active ._container {
-  opacity: 1;
-  top: 40%;
-  transition: $default_transition;
+
+  &.active {
+    height: 100vh;
+    z-index: 4;
+    opacity: 1;
+
+    ._container {
+      opacity: 1;
+      top: 40%;
+    }
+  }
+
+  ._container {
+    position: absolute;
+    top: 20%;
+    left: 50%;
+    right: 0;
+    width: 40%;
+    display: flex;
+    align-items: center;
+    justify-content: center;
+    flex-direction: column;
+    padding: 1rem 2em;
+    opacity: 0;
+    background-color: $root_color;
+    border: 0.1rem solid $_black;
+    transform: translate(-50%, -40%);
+    transition: $default_transition;
+  }
+
+  .modal_close {
+    position: absolute;
+    top: 1rem;
+    right: 1rem;
+    cursor: pointer;
+  }
 }
 
-
-.modal_close {
-  position: absolute;
-  top: 1rem;
-  right: 1rem;
-  cursor: pointer;
-}
 
 /* input */
 ._input {
@@ -171,11 +169,12 @@ span._input.red {
   transition: $default_transition;
 }
 
-.link a {
+.link p {
   display: block;
   font-family: $second_font;
   padding: 0.5rem 1rem;
   text-decoration: initial;
+  cursor: pointer;
   color: $_black;
 }
 
@@ -409,6 +408,7 @@ span._input.red {
 .not_found {
   padding: 6rem 1rem;
   font-family: $second_font;
+  text-align: center;
 }
 
 

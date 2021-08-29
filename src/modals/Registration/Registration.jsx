@@ -1,16 +1,10 @@
-import React, { useEffect, useState } from "react";
+import React, { useState } from "react";
 import { connect } from "react-redux";
 import { registerThunk } from "../../thunks/auth.thunk";
 
 import Modal from "../../components/Modal";
-import { useLocation, useHistory } from "react-router-dom";
 
-const Registration = ({ register }) => {
-  const [isOpen, setIsOpen] = useState(false);
-
-  const history = useHistory();
-  const { pathname } = useLocation();
-
+const Registration = ({ register, isOpen, setIsOpen }) => {
   const [postRegistration, setPostRegistration] = useState({
     fullname: "",
     username: "",
@@ -18,10 +12,6 @@ const Registration = ({ register }) => {
   });
 
   const [loading, setLoading] = useState(false);
-
-  useEffect(() => {
-    pathname === "/register" && setIsOpen(true);
-  }, [pathname]);
 
   const handleChange = (event) => {
     setPostRegistration((prev) => ({
@@ -36,15 +26,16 @@ const Registration = ({ register }) => {
   };
 
   const handleClose = () => {
-    setIsOpen(false);
-    history.push("/");
+    if (isOpen === "register") {
+      setIsOpen("");
+    }
   };
 
   return (
     <Modal
       loading={loading}
       name={"Registration"}
-      isOpen={isOpen}
+      isOpen={isOpen === "register"}
       handleClose={handleClose}
     >
       <input

@@ -1,25 +1,15 @@
-import React, { useEffect, useState } from "react";
+import React, { useState } from "react";
 import { connect } from "react-redux";
 import { loginThunk } from "../../thunks/auth.thunk";
 
 import Modal from "../../components/Modal";
-import { useHistory, useLocation } from "react-router-dom";
 
-const Login = ({ login }) => {
-  const [isOpen, setIsOpen] = useState(false);
-
-  const history = useHistory();
-  const { pathname } = useLocation();
-
+const Login = ({ login, isOpen, setIsOpen }) => {
   const [postLogin, setPostLogin] = useState({
     username: "",
     password: "",
   });
   const [loading, setLoading] = useState(false);
-
-  useEffect(() => {
-    pathname === "/login" && setIsOpen(true);
-  }, [pathname]);
 
   const handleChange = (event) => {
     setPostLogin((prev) => ({
@@ -34,15 +24,16 @@ const Login = ({ login }) => {
   };
 
   const handleClose = () => {
-    setIsOpen(false);
-    history.push("/");
+    if (isOpen === "login") {
+      setIsOpen("");
+    }
   };
 
   return (
     <Modal
       loading={loading}
       name={"Log in"}
-      isOpen={isOpen}
+      isOpen={isOpen === "login"}
       handleClose={handleClose}
     >
       <input

@@ -1,20 +1,34 @@
-import React from "react";
+import React, { useState } from "react";
 import { Link } from "react-router-dom";
+import { Registration } from "../modals/Registration";
+import { Login } from "../modals/Login";
 
 const Bar = () => {
+  const [isOpen, setIsOpen] = useState("");
+
+  const onClick = (event) => {
+    setIsOpen(event.target.id);
+  };
+
   return (
     <div className="bar">
-      <p className="_title">
+      <div className="_title">
         <Link to="/">Eco-Market</Link>
-      </p>
+      </div>
       <div className={"link_container"}>
         <li className="link">
-          <Link to="/register">Registration</Link>
+          <p id="register" onClick={onClick}>
+            Registration
+          </p>
         </li>
         <li className="link">
-          <Link to="/login">Log in</Link>
+          <p id="login" onClick={onClick}>
+            Log in
+          </p>
         </li>
       </div>
+      <Registration isOpen={isOpen} setIsOpen={setIsOpen} />
+      <Login isOpen={isOpen} setIsOpen={setIsOpen} />
     </div>
   );
 };
