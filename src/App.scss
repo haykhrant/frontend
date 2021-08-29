@@ -1,6 +1,8 @@
 $root_color : #f3f3f3;
 $main_color: #eaeaea;
+$second_color: #cdcdcd;
 $white_opacity: #ffffffda;
+$grey_opacity: #00000019;
 $red_message: #c02525;
 $_black: #000000;
 $_white: #ffffff;
@@ -60,7 +62,6 @@ body,
 
   &.active {
     height: 100vh;
-    z-index: 4;
     opacity: 1;
 
     ._container {
@@ -125,15 +126,6 @@ span._input.red {
 /*}*/
 
 /* button */
-.button_section {
-  position: absolute;
-  bottom: -10%;
-  right: 0.5rem;
-  display: flex;
-  justify-content: space-evenly;
-  opacity: 0;
-  transition: $default_transition;
-}
 ._button {
   padding: 0.5rem 1rem;
   margin-left: 0.5rem;
@@ -311,7 +303,7 @@ span._input.red {
 
       & .subCategories {
         height: 10rem;
-        overflow: scroll;
+        overflowY: scroll;
         opacity: 1;
         z-index: 1;
       }
@@ -354,7 +346,7 @@ span._input.red {
         transition: $default_transition;
       }
       &:hover {
-        background-color: #cdcdcd;
+        background-color: $second_color;
       }
     }
     }
@@ -412,44 +404,116 @@ span._input.red {
 }
 
 
-/* non used */
-.card {
-  position: relative;
+/*card*/
+.card_list {
   display: flex;
-  justify-content: space-between;
-  min-height: 13rem;
-  width: 40rem;
-  padding: 1rem 0.5rem 1rem 0.5rem;
-  margin-top: 1rem;
-  background-color: #f5f5f5;
-  transition: $default_transition;
-  overflow: hidden;
-  opacity: 0.1;
-}
-.card:hover {
-  box-shadow: 0 0 0.3rem 0.05rem #b3b3b3;
-}
-.card:hover .button_section {
-  bottom: 4%;
-  opacity: 1;
-}
-.card.deleted {
-  visibility: hidden;
-}
-.card.animated {
-  background-color: #e5e5e5;
-  opacity: 1;
-}
+  flex-wrap: wrap;
+  gap: 0.5rem;
 
-.list.large {
-  font-size: $font_size_large;
-}
+  .card {
+    position: relative;
+    display: flex;
+    justify-content: space-between;
+    flex-wrap: wrap;
+    max-width: 27rem;
+    background-color: $root_color;
+    transition: $default_transition;
+    overflow: hidden;
 
-.card_description {
-  min-width: 30rem;
-  margin-left: 1.5rem;
-  font-size: $font_size_small;
-  text-align: right;
-  overflow-wrap: break-word;
-  font-family: $second_font;
+    &:hover {
+      box-shadow: 0 0 0.3rem 0.05rem $second_color;
+    }
+
+    .left_section {
+      display: flex;
+      flex-direction: column;
+      flex: 1;
+      background-color: $_white;
+      border-right: 0.1rem solid $_black;
+      padding: 1rem 0.5rem;
+
+      .card_title {
+        text-align: center;
+        padding: 0.5rem;
+      }
+
+      ._img img {
+        width: 100%;
+        height: auto;
+        padding: 2%;
+        border-radius: 1rem;
+      }
+    }
+
+    .right_section {
+      position: relative;
+      display: flex;
+      flex-direction: column;
+      flex: 1;
+      align-items: flex-end;
+
+      .card_info {
+        padding: 1rem;
+        align-items: flex-end;
+
+        .card_description {
+          margin-left: 1.5rem;
+          font-size: $font_size_small;
+          overflow-wrap: break-word;
+          font-family: $second_font;
+          text-align: right;
+
+          &.large {
+            font-size: $font_size_large;
+            cursor: pointer;
+          }
+        }
+
+        .tags {
+          margin: 1.5rem 0 0 1.5rem;
+          display: flex;
+          gap: 0.3rem;
+          justify-content: flex-end;
+          flex-wrap: wrap;
+
+          .tag {
+            font-family: $second_font;
+            background-color: $root_color;
+            border-radius: 1rem;
+            padding: 0.5rem 1rem;
+          }
+        }
+      }
+
+      .button_section {
+        position: absolute;
+        display: flex;
+        align-items: center;
+        justify-content: flex-end;
+        width: 100%;
+        bottom: -10%;
+        padding: 0.5rem;
+        opacity: 0;
+        transition: $default_transition;
+
+        .info {
+          padding: 0.5rem;
+          color: $_white;
+          background-color: $_black;
+        }
+      }
+
+      &:hover .button_section {
+        bottom: 0;
+        opacity: 1;
+        background-color: $grey_opacity;
+      }
+    }
+
+    &.animated {
+      background-color: $main_color;
+      opacity: 1;
+    }
+  }
+
 }

@@ -1,22 +1,30 @@
 import React, { useEffect, useState } from "react";
-import Categories from "../../components/Categories";
-import Loading from "../../components/Loading";
 import { connect } from "react-redux";
 
-import { getCategoryThunk } from "../../thunks/category.thunk";
+import Categories from "../../components/Categories";
+import Loading from "../../components/Loading";
 
+import { getCategoryThunk } from "../../thunks/category.thunk";
+import { getProductThunk } from "../../thunks/product.thunk";
+
+import { formatCategories, formatProducts } from "../../utils";
 import "./Home.style.scss";
-import { formatCategories } from "../../utils";
+import ProductList from "../../components/ProductList";
 
 const Home = (props) => {
-  const { categories: categoriesFromProps, getCategories } = props;
+  const { getCategories, getProducts } = props;
+  const { categories: categoriesFromProps } = props.category;
+  const { products: productsFromProps } = props.product;
+
   const [categories, setCategories] = useState([]);
+  const [products, setProducts] = useState([]);
   const [loading, setLoading] = useState(false);
 
   useEffect(() => {
-    setLoading(true);
-    getCategories().then(() => setLoading(false));
-  }, [getCategories]);
+    //setLoading(true);
+    getCategories();
+    getProducts();
+  }, [getCategories, getProducts]);
 
   useEffect(() => {
     if (categoriesFromProps.length) {
@@ -24,25 +32,33 @@ const Home = (props) => {
     }
   }, [categoriesFromProps, setCategories]);
 
+  useEffect(() => {
+    if (productsFromProps.length) {
+      setProducts(formatProducts(productsFromProps));
+    }
+  }, [productsFromProps, setProducts]);
+
   return (
     <div className={"main"}>
       <div className={"left_side"}>
         {!loading ? <Categories categories={categories} /> : <Loading />}
+      </div>
+      <div className={"main_side"}>
+        <ProductList products={products} />
       </div>
     </div>
   );
 };
 
 const mapStateToProps = (state) => {
-  const { category } = state;
-  return category;
+  const { category, product } = state;
+  return { category, product };
 };
 
 const mapDispatchToProps = (dispatch) => {
   return {
-    getCategories: async () => {
-      await dispatch(getCategoryThunk());
-    },
+    getCategories: async () => await dispatch(getCategoryThunk()),
+    getProducts: async () => await dispatch(getProductThunk()),
   };
 };
 

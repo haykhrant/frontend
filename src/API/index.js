@@ -15,5 +15,6 @@ const Endpoints = {
   register: new Endpoint("register"),
   login: new Endpoint("login"),
   categories: new Endpoint("categories"),
+  products: new Endpoint("products"),
 };
 export default Endpoints;
