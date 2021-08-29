@@ -1,16 +1,13 @@
 import React from "react";
 import LoadingIcon from "../icon/loading.gif";
 import CrossIcon from "../icon/cross_button.png";
-import { useHistory } from "react-router-dom";
 
-const Modal = ({ name, isOpen, loading, children }) => {
-  const history = useHistory();
-
+const Modal = ({ name, isOpen, handleClose, loading, children }) => {
   const goToPreviousPath = () => {
-    history.goBack();
+    handleClose();
   };
   const onOutOfModal = (event) => {
-    if (event.currentTarget === event.target) goToPreviousPath();
+    if (event.currentTarget === event.target) handleClose();
   };
 
   return (

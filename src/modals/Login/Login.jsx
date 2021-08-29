@@ -3,13 +3,15 @@ import { connect } from "react-redux";
 import { loginThunk } from "../../thunks/auth.thunk";
 
 import Modal from "../../components/Modal";
-import { useLocation } from "react-router-dom";
+import { useHistory, useLocation } from "react-router-dom";
 
-const Registration = ({ register }) => {
+const Login = ({ login }) => {
   const [isOpen, setIsOpen] = useState(false);
+
+  const history = useHistory();
   const { pathname } = useLocation();
 
-  const [postRegistration, setPostRegistration] = useState({
+  const [postLogin, setPostLogin] = useState({
     username: "",
     password: "",
   });
@@ -20,15 +22,20 @@ const Registration = ({ register }) => {
   }, [pathname]);
 
   const handleChange = (event) => {
-    setPostRegistration((prev) => ({
+    setPostLogin((prev) => ({
       ...prev,
       [event.target.name]: `${event.target.value}`,
     }));
   };
   const handleClick = async () => {
     setLoading(true);
-    await register(postRegistration);
+    await login(postLogin);
     setLoading(false);
+  };
+
+  const handleClose = () => {
+    setIsOpen(false);
+    history.push("/");
   };
 
   return (
@@ -36,21 +43,21 @@ const Registration = ({ register }) => {
       loading={loading}
       name={"Log in"}
       isOpen={isOpen}
-      setIsOpen={setIsOpen}
+      handleClose={handleClose}
     >
       <input
         className={"_input"}
         name={"username"}
         placeholder={"User name"}
         onChange={handleChange}
-        value={postRegistration.username}
+        value={postLogin.username}
       />
       <input
         className={"_input"}
         name={"password"}
         placeholder={"Password"}
         onChange={handleChange}
-        value={postRegistration.password}
+        value={postLogin.password}
       />
       <div className={"_form_buttons"}>
         <button className={"_button"} onClick={handleClick}>
@@ -68,10 +75,10 @@ const mapStateToProps = (state) => {
 
 const mapDispatchToProps = (dispatch) => {
   return {
-    register: async (data) => {
+    login: async (data) => {
       await dispatch(loginThunk(data));
     },
   };
 };
 
-export default connect(mapStateToProps, mapDispatchToProps)(Registration);
+export default connect(mapStateToProps, mapDispatchToProps)(Login);

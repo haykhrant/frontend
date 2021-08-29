@@ -3,13 +3,13 @@ import { HashRouter as Router, Route, Switch } from "react-router-dom";
 
 import Bar from "./components/Bar";
 import Messages from "./components/Messages";
+import NotFound from "./components/NotFound404";
 
-import { Registration } from "./screens/Registration";
-import { Login } from "./screens/Login";
+import { Registration } from "./modals/Registration";
+import { Login } from "./modals/Login";
+import { Home } from "./screens/Home";
 
 import "./App.scss";
-import NotFound from "./components/NotFound404";
-import Home from "./screens/Home/Home";
 
 function App() {
   return (
