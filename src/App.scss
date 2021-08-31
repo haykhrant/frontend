@@ -4,6 +4,7 @@ $second_color: #cdcdcd;
 $white_opacity: #ffffffda;
 $grey_opacity: #00000019;
 $red_message: #c02525;
+$green_price: #11AD11FF;
 $_black: #000000;
 $_white: #ffffff;
 
@@ -46,6 +47,26 @@ body,
   padding: 1rem 2rem;
   z-index: 3;
 }
+
+
+/*scrollbar*/
+::-webkit-scrollbar {
+  width: 10px;
+}
+
+::-webkit-scrollbar-track {
+  background: $root_color;
+}
+
+::-webkit-scrollbar-thumb {
+  background: $grey_opacity;
+  border-radius: 1rem;
+}
+
+::-webkit-scrollbar-thumb:hover {
+  background: $second_color;
+}
+
 
 /* modal */
 .modal {
@@ -261,16 +282,18 @@ span._input.red {
 
 /* category */
 .categories {
+  position: relative;
   display: flex;
   flex-direction: column;
+  gap: 0.5rem;
   width: 100%;
+  min-height: calc(100vh - 7rem);
   z-index: 0;
 
   .category {
     display: flex;
     flex-direction: column;
     overflow: hidden;
-    margin-top: 0.5rem;
 
     .subCategories {
       height: 0;
@@ -355,19 +378,7 @@ span._input.red {
 
 /* loading */
 .loading {
-  position: fixed;
-  left: 0;
-  right: 0;
-  display: flex;
-  align-items: center;
-  justify-content: center;
-  min-height: 100%;
-  background-color: $white_opacity;
-  z-index: 2;
-}
-
-.loading_small {
-  position: fixed;
+  position: absolute;
   left: 0;
   right: 0;
   display: flex;
@@ -406,16 +417,24 @@ span._input.red {
 
 /*card*/
 .card_list {
+  position: relative;
   display: flex;
-  flex-wrap: wrap;
+  flex-direction: column;
+  width: 100%;
+  min-height: calc(100vh - 7rem);
   gap: 0.5rem;
+
+  .empty {
+    font-size: $font_size_large;
+    align-items: center;
+  }
 
   .card {
     position: relative;
     display: flex;
     justify-content: space-between;
     flex-wrap: wrap;
-    max-width: 27rem;
+    min-height: calc(9rem + 42vh);
     background-color: $root_color;
     transition: $default_transition;
     overflow: hidden;
@@ -435,6 +454,16 @@ span._input.red {
       .card_title {
         text-align: center;
         padding: 0.5rem;
+
+        &.clickable{
+          cursor: pointer;
+          padding: 0 0 0.5rem 0;
+
+          &:hover {
+            color: $green_price;
+            text-decoration: underline;
+          }
+        }
       }
 
       ._img img {
@@ -499,7 +528,7 @@ span._input.red {
         .info {
           padding: 0.5rem;
           color: $_white;
-          background-color: $_black;
+          background-color: $green_price;
         }
       }
 

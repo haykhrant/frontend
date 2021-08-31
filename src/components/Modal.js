@@ -1,6 +1,6 @@
 import React from "react";
-import LoadingIcon from "../icon/loading.gif";
 import CrossIcon from "../icon/cross_button.png";
+import Loading from "./Loading";
 
 const Modal = ({ name, isOpen, handleClose, loading, children }) => {
   const onClose = () => {
@@ -20,11 +20,7 @@ const Modal = ({ name, isOpen, handleClose, loading, children }) => {
           <img src={CrossIcon} alt="Close" className="icon middle" />
         </div>
         <span className="_title">{name}</span>
-        {loading && (
-          <div className="loading_small">
-            <img src={LoadingIcon} alt="Loading..." className="icon middle" />
-          </div>
-        )}
+        {loading && <Loading size={"small"} />}
         {children}
       </div>
     </div>

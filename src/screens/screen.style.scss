@@ -1,0 +1,22 @@
+.screen {
+    display: flex;
+    padding: calc(6rem - 1vh) 0 0 0;
+}
+
+.left_side {
+    position: absolute;
+    top: 6rem;
+    height: calc(100vh - 6.5rem);
+    width: 25%;
+    overflow-y: auto;
+}
+
+.main_side {
+    position: absolute;
+    top: 6rem;
+    left: calc(25% + 1rem);
+    height: calc(100vh - 6.5rem);
+    min-width: calc(100vw - (25% + 1rem));
+    display: flex;
+    overflow-y: auto;
+}

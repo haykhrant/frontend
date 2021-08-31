@@ -1,9 +1,9 @@
 import React from "react";
 import LoadingIcon from "../icon/loading.gif";
-const Loading = () => {
+const Loading = ({ size }) => {
   return (
-    <div className="loading_small">
-      <img src={LoadingIcon} alt="Loading..." className="icon" />
+    <div className="loading">
+      <img src={LoadingIcon} alt="Loading..." className={"icon " + size} />
     </div>
   );
 };

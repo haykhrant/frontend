@@ -10,6 +10,8 @@ const Product = (props) => {
     userFullName,
     tags,
     productName,
+    productId,
+    onCategory,
   } = props;
 
   const [animate, setAnimate] = useState(false);
@@ -23,12 +25,17 @@ const Product = (props) => {
   return (
     <div className={animate ? "card animated" : "card"}>
       <div className="left_section">
+        <h4
+          className="card_title clickable"
+          onClick={onCategory.bind(null, productId)}
+        >
+          {productName}
+        </h4>
         <div className="_img">
-          <img src={ecoProductsImage} href="Eco-market" />
+          <img src={ecoProductsImage} alt="Eco-market" />
         </div>
 
         <h3 className="card_title">{name}</h3>
-        <h5 className="card_title">{productName}</h5>
       </div>
       <div className="right_section">
         <div className="card_info">

@@ -16,5 +16,6 @@ const Endpoints = {
   login: new Endpoint("login"),
   categories: new Endpoint("categories"),
   products: new Endpoint("products"),
+  productsByCategory: (id) => new Endpoint(`subcategory/${id}/products`),
 };
 export default Endpoints;
