@@ -1,8 +1,9 @@
-import React from "react";
+import React, { useRef } from "react";
 import Product from "./Product";
-import Loading from "./Loading";
 const ProductList = ({ products, loading, onCategory }) => {
   const arr = [...products];
+
+  const { current: EMPTY_PRODUCTS } = useRef(new Array(3).fill(null));
 
   return (
     <div className="card_list">
@@ -26,10 +27,10 @@ const ProductList = ({ products, loading, onCategory }) => {
               />
             ))
         ) : (
-          <span className="card_list empty">No Products</span>
+          <span className="empty">No Products</span>
         )
       ) : (
-        <Loading />
+        EMPTY_PRODUCTS.map(() => <div className="card loading-animation" />)
       )}
     </div>
   );

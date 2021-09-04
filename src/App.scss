@@ -17,6 +17,16 @@ $font_size_large: 1.3rem;
 
 $default_transition: 0.15s ease-in-out;
 
+@mixin background-gradient {
+  background-image: linear-gradient(90deg, $main_color 0, $grey_opacity 150px, $main_color 300px);
+  background-size: 700px;
+}
+
+@mixin animate {
+  animation: loading 2s ease-in-out infinite;
+}
+
+
 /* app */
 * {
   margin: 0;
@@ -295,6 +305,12 @@ span._input.red {
     flex-direction: column;
     overflow: hidden;
 
+    &.loading-animation {
+      height: 3.3rem;
+      @include background-gradient;
+      @include animate;
+    }
+
     .subCategories {
       height: 0;
       display: flex;
@@ -426,18 +442,22 @@ span._input.red {
 
   .empty {
     font-size: $font_size_large;
-    align-items: center;
+    text-align: center;
   }
 
   .card {
     position: relative;
     display: flex;
     justify-content: space-between;
-    flex-wrap: wrap;
-    min-height: calc(9rem + 42vh);
-    background-color: $root_color;
+    background-color: $main_color;
     transition: $default_transition;
-    overflow: hidden;
+
+    &.loading-animation{
+      opacity: 1;
+      height: 15rem;
+      @include background-gradient;
+      @include animate;
+    }
 
     &:hover {
       box-shadow: 0 0 0.3rem 0.05rem $second_color;
@@ -466,12 +486,33 @@ span._input.red {
         }
       }
 
-      ._img img {
-        width: 100%;
-        height: auto;
-        padding: 2%;
-        border-radius: 1rem;
+      ._img {
+        position: relative;
+        overflow: hidden;
+        height: 10rem;
+        border-radius: 0.5rem;
+
+        //&:hover{
+        //  overflow: visible;
+        //  z-index: 2;
+        //
+        //
+        //  img {
+        //    //transform: scale(1.5);
+        //    border: 0.2rem solid $_black;
+        //    top: -25%;
+        //  }
+        //}
+
+
+        img {
+          position: absolute;
+          width: 100%;
+          height: auto;
+          ;
+        }
       }
+
     }
 
     .right_section {
@@ -480,6 +521,7 @@ span._input.red {
       flex-direction: column;
       flex: 1;
       align-items: flex-end;
+      overflow: hidden;
 
       .card_info {
         padding: 1rem;
@@ -540,9 +582,21 @@ span._input.red {
     }
 
     &.animated {
-      background-color: $main_color;
-      opacity: 1;
+      opacity: 0;
     }
   }
 
+}
+
+/* animations */
+@keyframes loading {
+  0% {
+    background-position: 0;
+  }
+  50% {
+    background-position: -30rem;
+  }
+  100%{
+    background-position: 0;
+  }
 }

@@ -14,12 +14,12 @@ const Product = (props) => {
     onCategory,
   } = props;
 
-  const [animate, setAnimate] = useState(false);
+  const [animate, setAnimate] = useState(true);
 
   useEffect(() => {
     setTimeout(() => {
-      setAnimate(true);
-    }, 100);
+      setAnimate(false);
+    });
   }, []);
 
   return (
