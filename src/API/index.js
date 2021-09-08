@@ -6,7 +6,8 @@ const axiosInstance = axios.create({
   responseType: "json",
   headers: {
     "Access-Control-Allow-Origin": "*",
-    "Access-Control-Allow-Methods": "POST",
+    "Access-Control-Allow-Methods": "GET, PUT, POST, DELETE, HEAD, OPTIONS",
+    "Access-Control-Allow-Headers": "*",
   },
 });
 

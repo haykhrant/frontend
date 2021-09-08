@@ -9,6 +9,7 @@
     height: calc(100vh - 6.5rem);
     width: 25%;
     overflow-y: auto;
+    padding: 0 0.5rem;
 }
 
 .main_side {
@@ -19,4 +20,5 @@
     min-width: calc(100vw - (25% + 1rem));
     display: flex;
     overflow-y: auto;
+    padding: 0 0.5rem;
 }

@@ -30,7 +30,9 @@ const ProductList = ({ products, loading, onCategory }) => {
           <span className="empty">No Products</span>
         )
       ) : (
-        EMPTY_PRODUCTS.map(() => <div className="card loading-animation" />)
+        EMPTY_PRODUCTS.map((_, index) => (
+          <div key={index} className="card loading-animation" />
+        ))
       )}
     </div>
   );

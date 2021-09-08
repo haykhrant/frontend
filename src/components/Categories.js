@@ -1,5 +1,5 @@
 import React, { useRef, useState } from "react";
-import Arrow from "../icon/up_arrow.png";
+import Arrow from "../icon/arrow.svg";
 
 const Categories = ({ categories, onCategory, loading }) => {
   const [activeCategories, setActiveCategories] = useState({});
@@ -61,8 +61,8 @@ const Categories = ({ categories, onCategory, loading }) => {
               </div>
             </div>
           ))
-        : EMPTY_CATEGORIES.map(() => (
-            <div className={"category loading-animation"} />
+        : EMPTY_CATEGORIES.map((_, index) => (
+            <div key={index} className={"category loading-animation"} />
           ))}
     </div>
   );

@@ -23,7 +23,12 @@ export const registerThunk = (data) => async (dispatch) => {
 
 export const loginThunk = (data) => async (dispatch) => {
   try {
-    const response = await api.login.post(data);
+    const encodeToken = btoa(JSON.stringify(data));
+    const response = await api.login.get({
+      headers: {
+        Authorization: `Basic ${encodeToken}`,
+      },
+    });
     dispatch(loginSuccess());
     dispatch(addMessage(response.data));
   } catch (err) {
