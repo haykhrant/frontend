@@ -40,3 +40,10 @@ export const formatProducts = (products = []) => {
     })
   );
 };
+
+export const generateTokenString = (data) =>
+  Object.values(data)
+    .reduce((acc, curr) => {
+      return acc + curr + ":";
+    }, "")
+    .slice(0, -1);
