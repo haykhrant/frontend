@@ -1,13 +1,13 @@
-import React, { useState } from "react";
-import { connect } from "react-redux";
-import { loginThunk } from "../../thunks/auth.thunk";
+import React, { useState } from 'react';
+import { connect } from 'react-redux';
+import { loginThunk } from '../../thunks/auth.thunk';
 
-import Modal from "../../components/Modal";
+import Modal from '../../components/Modal';
 
 const Login = ({ login, isOpen, setIsOpen }) => {
   const [postLogin, setPostLogin] = useState({
-    username: "",
-    password: "",
+    username: '',
+    password: '',
   });
   const [loading, setLoading] = useState(false);
 
@@ -24,35 +24,37 @@ const Login = ({ login, isOpen, setIsOpen }) => {
   };
 
   const handleClose = () => {
-    if (isOpen === "login") {
-      setIsOpen("");
+    if (isOpen === 'login') {
+      setIsOpen('');
     }
   };
 
   return (
     <Modal
       loading={loading}
-      name={"Log in"}
-      isOpen={isOpen === "login"}
+      name={'Log in'}
+      isOpen={isOpen === 'login'}
       handleClose={handleClose}
     >
-      <input
-        className={"_input"}
-        name={"username"}
-        placeholder={"User name"}
-        onChange={handleChange}
-        value={postLogin.username}
-      />
-      <input
-        className={"_input"}
-        name={"password"}
-        placeholder={"Password"}
-        type={"password"}
-        onChange={handleChange}
-        value={postLogin.password}
-      />
-      <div className={"_form_buttons"}>
-        <button className={"_button"} onClick={handleClick}>
+      <div className={'_form'}>
+        <input
+          className={'_input'}
+          name={'username'}
+          placeholder={'User name'}
+          onChange={handleChange}
+          value={postLogin.username}
+        />
+        <input
+          className={'_input'}
+          name={'password'}
+          placeholder={'Password'}
+          type={'password'}
+          onChange={handleChange}
+          value={postLogin.password}
+        />
+      </div>
+      <div className={'_form_buttons'}>
+        <button className={'_button'} onClick={handleClick}>
           Log in
         </button>
       </div>

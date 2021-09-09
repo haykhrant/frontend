@@ -1,13 +1,13 @@
-import React, { useState, useEffect } from "react";
-import { useSelector, useDispatch } from "react-redux";
-import { logout } from "../actions/auth.actions";
-import { Link } from "react-router-dom";
-import { Registration } from "../modals/Registration";
-import { Login } from "../modals/Login";
-import AcceptModal from "./AcceptModal";
+import React, { useState, useEffect } from 'react';
+import { useSelector, useDispatch } from 'react-redux';
+import { logout } from '../actions/auth.actions';
+import { Link } from 'react-router-dom';
+import { Registration } from '../modals/Registration';
+import { Login } from '../modals/Login';
+import { AcceptModal } from './AcceptModal';
 
-const Bar = () => {
-  const [isOpen, setIsOpen] = useState("");
+export const Bar = () => {
+  const [isOpen, setIsOpen] = useState('');
 
   const { auth, authStatus } = useSelector((state) => state.auth);
   const dispatch = useDispatch();
@@ -18,12 +18,12 @@ const Bar = () => {
 
   const onLogout = () => {
     dispatch(logout());
-    setIsOpen("");
+    setIsOpen('');
   };
 
   useEffect(() => {
     if (authStatus) {
-      setIsOpen("");
+      setIsOpen('');
     }
   }, [authStatus]);
 
@@ -33,7 +33,7 @@ const Bar = () => {
         <Link to="/">Eco-Market</Link>
       </div>
       {!authStatus ? (
-        <div className={"link_container"}>
+        <div className={'link_container'}>
           <li className="link">
             <p id="register" onClick={onClick}>
               Registration
@@ -46,7 +46,7 @@ const Bar = () => {
           </li>
         </div>
       ) : (
-        <div className={"link_container"}>
+        <div className={'link_container'}>
           <div className="">{auth.fullname}</div>
           <li className="link">
             <p id="accept" onClick={onClick}>
@@ -59,12 +59,10 @@ const Bar = () => {
       <Login isOpen={isOpen} setIsOpen={setIsOpen} />
       <AcceptModal
         onAccept={onLogout}
-        isOpen={isOpen === "accept"}
+        isOpen={isOpen === 'accept'}
         setIsOpen={setIsOpen}
         text="Are you sure you want to log out?"
       />
     </div>
   );
 };
-
-export default Bar;
