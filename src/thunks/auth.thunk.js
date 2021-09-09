@@ -11,13 +11,13 @@ import { generateTokenString } from "../utils";
 export const registerThunk = (data) => async (dispatch) => {
   try {
     const response = await api.register.post(data);
-    dispatch(registrationSuccess());
-    dispatch(addMessage(response.data));
+    dispatch(registrationSuccess(response.data));
+    dispatch(addMessage("Registration successful", "success"));
   } catch (err) {
     console.error("FROM REGISTER_THUNK", err);
     if (err) {
       dispatch(registrationFailure());
-      dispatch(addMessage(`${err}`));
+      dispatch(addMessage(`${err}`, "failure"));
     }
   }
 };
@@ -25,20 +25,19 @@ export const registerThunk = (data) => async (dispatch) => {
 export const loginThunk = (data) => async (dispatch) => {
   try {
     const token = generateTokenString(data);
-    console.log(token);
-    const encodeToken = btoa(token);
+    const encodeToken = Buffer.from(token).toString("base64");
     const response = await api.login.get({
       headers: {
         Authorization: `Basic ${encodeToken}`,
       },
     });
-    dispatch(loginSuccess());
-    dispatch(addMessage(response.data.username + " Log in successful"));
+    dispatch(loginSuccess(response.data));
+    dispatch(addMessage("Log in successful", "success"));
   } catch (err) {
     console.error("FROM LOGIN_THUNK", err);
     if (err) {
       dispatch(loginFailure());
-      dispatch(addMessage(`${err}`));
+      dispatch(addMessage(`${err}`, "failure"));
     }
   }
 };

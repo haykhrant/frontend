@@ -1,4 +1,6 @@
 const initialState = {
+  auth: {},
+  authStatus: false,
   registrationStatus: false,
   loginStatus: false,
 };
@@ -9,6 +11,8 @@ export default function authReducer(state = initialState, action) {
       return {
         ...state,
         registrationStatus: true,
+        authStatus: true,
+        auth: action.payload,
       };
     case "REGISTRATION_FAILURE":
       return {
@@ -19,11 +23,19 @@ export default function authReducer(state = initialState, action) {
       return {
         ...state,
         loginStatus: true,
+        authStatus: true,
+        auth: action.payload,
       };
     case "LOGIN_FAILURE":
       return {
         ...state,
         loginStatus: false,
+      };
+    case "LOGOUT":
+      return {
+        ...state,
+        auth: {},
+        authStatus: false,
       };
     default:
       return state;

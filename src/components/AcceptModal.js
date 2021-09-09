@@ -1,28 +1,21 @@
 import React from "react";
-import LoadingIcon from "../icon/loading.gif";
+import Loading from "./Loading";
+
 const AcceptModal = ({ text, isOpen, setIsOpen, onAccept, loading }) => {
   const onAcceptAsync = async () => {
     await onAccept();
   };
+
   return (
     <div className={isOpen ? "modal active" : "modal"}>
-      <div className="input_section">
-        <span className="card_title input_element red">{text}</span>
-        {loading && (
-          <div className="input_element loading">
-            <img src={LoadingIcon} alt="Loading..." className="icon middle" />
-          </div>
-        )}
-        <div className="input_element">
-          <button className="card_button" onClick={onAcceptAsync}>
+      <div className="_container">
+        <span className="_title">{text}</span>
+        {loading && <Loading size={"small"} />}
+        <div className="button_container">
+          <button className="_button" onClick={onAcceptAsync}>
             Accept
           </button>
-          <button
-            className="card_button"
-            onClick={() => {
-              setIsOpen(false);
-            }}
-          >
+          <button className="_button" onClick={setIsOpen.bind(null, "")}>
             Cancel
           </button>
         </div>

@@ -1,6 +1,7 @@
-export const addMessage = (data) => ({
+export const addMessage = (data, messageType) => ({
   type: "ADD_MESSAGE",
   payload: data,
+  messageType,
 });
 
 export const emptyMessages = (data) => ({

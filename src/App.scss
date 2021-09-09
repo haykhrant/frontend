@@ -1,10 +1,11 @@
-$root_color : #f6f6f6;
+$root_color: #f6f6f6;
 $main_color: #eaeaea;
 $second_color: #cdcdcd;
 $white_opacity: #ffffffda;
 $grey_opacity: #00000019;
-$red_message: #c02525;
-$green_price: #11AD11FF;
+$red_message: #b61a1a;
+$green_message: #178f17;
+$green_price: #11ad11ff;
 $_black: #000000;
 $_white: #ffffff;
 
@@ -18,14 +19,18 @@ $font_size_large: 1.3rem;
 $default_transition: 0.15s ease-in-out;
 
 @mixin background-gradient {
-  background-image: linear-gradient(90deg, $main_color 0, $grey_opacity 150px, $main_color 300px);
+  background-image: linear-gradient(
+    90deg,
+    $main_color 0,
+    $grey_opacity 150px,
+    $main_color 300px
+  );
   background-size: 700px;
 }
 
 @mixin animate {
   animation: loading 2s ease-in-out infinite;
 }
-
 
 /* app */
 * {
@@ -58,7 +63,6 @@ body,
   z-index: 3;
 }
 
-
 /*scrollbar*/
 ::-webkit-scrollbar {
   width: 10px;
@@ -76,7 +80,6 @@ body,
 ::-webkit-scrollbar-thumb:hover {
   background: $second_color;
 }
-
 
 /* modal */
 .modal {
@@ -127,7 +130,6 @@ body,
   }
 }
 
-
 /* input */
 ._input {
   display: flex;
@@ -157,6 +159,13 @@ span._input.red {
 /*}*/
 
 /* button */
+.button_container {
+  margin-top: 1rem;
+  display: flex;
+  justify-content: center;
+  align-items: center;
+}
+
 ._button {
   padding: 0.5rem 1rem;
   margin-left: 0.5rem;
@@ -173,21 +182,20 @@ span._input.red {
 
 ._button:hover {
   border-bottom: 0.09rem solid $_black;
-
 }
 ._button:active {
   border-bottom: 0.09rem solid $_white;
 }
 
 /* link */
-.link{
+.link {
   display: block;
   margin: 0 0.5rem;
   border-bottom: 0.1rem solid transparent;
   transition: $default_transition;
 }
 
-.link:hover{
+.link:hover {
   border-bottom: 0.1rem solid $_black;
   transition: $default_transition;
 }
@@ -201,11 +209,11 @@ span._input.red {
   color: $_black;
 }
 
-.link_container{
+.link_container {
   display: flex;
   justify-content: center;
+  align-items: center;
 }
-
 
 /* main */
 .main {
@@ -213,7 +221,6 @@ span._input.red {
   display: flex;
   padding: 6rem 0 0 0;
 }
-
 
 /* title */
 ._title {
@@ -232,7 +239,6 @@ span._input.red {
   color: $_black;
 }
 
-
 /* form */
 ._form {
   display: flex;
@@ -247,7 +253,6 @@ span._input.red {
   justify-content: center;
   align-items: center;
 }
-
 
 /* message */
 .messages {
@@ -272,6 +277,22 @@ span._input.red {
   transition: $default_transition;
 }
 
+.message.success {
+  border: 0.1rem solid $green_message;
+
+  span {
+    color: $green_message;
+  }
+}
+
+.message.failure {
+  border: 0.1rem solid $red_message;
+
+  span {
+    color: $red_message;
+  }
+}
+
 .message.active {
   right: 0.5rem;
   opacity: 1;
@@ -279,7 +300,6 @@ span._input.red {
 
 .message span {
   font-family: $second_font;
-  color: #b61a1a;
   font-size: $font_size_middle;
   overflow-wrap: break-word;
   overflow: hidden;
@@ -288,7 +308,6 @@ span._input.red {
 .message_close {
   cursor: pointer;
 }
-
 
 /* category */
 .categories {
@@ -369,7 +388,6 @@ span._input.red {
         transform: rotate(180deg);
         transition: $default_transition;
       }
-
     }
     .category_text {
       display: flex;
@@ -388,9 +406,8 @@ span._input.red {
         background-color: $second_color;
       }
     }
-    }
   }
-
+}
 
 /* loading */
 .loading {
@@ -422,14 +439,12 @@ span._input.red {
   height: 0.8rem;
 }
 
-
 /* not found 404 */
 .not_found {
   padding: 6rem 1rem;
   font-family: $second_font;
   text-align: center;
 }
-
 
 /*card*/
 .card_list {
@@ -452,7 +467,7 @@ span._input.red {
     background-color: $main_color;
     transition: $default_transition;
 
-    &.loading-animation{
+    &.loading-animation {
       opacity: 1;
       height: 15rem;
       @include background-gradient;
@@ -475,7 +490,7 @@ span._input.red {
         text-align: left;
         padding: 0.5rem;
 
-        &.clickable{
+        &.clickable {
           cursor: pointer;
           padding: 0 0 0.5rem 0;
 
@@ -492,15 +507,12 @@ span._input.red {
         height: 13rem;
         border-radius: 0.5rem;
 
-
         img {
           position: absolute;
           width: 100%;
           height: auto;
-          ;
         }
       }
-
     }
 
     .right_section {
@@ -573,7 +585,6 @@ span._input.red {
       opacity: 0;
     }
   }
-
 }
 
 /* animations */
@@ -584,7 +595,7 @@ span._input.red {
   50% {
     background-position: -30rem;
   }
-  100%{
+  100% {
     background-position: 0;
   }
 }

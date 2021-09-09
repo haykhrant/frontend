@@ -47,6 +47,7 @@ const Login = ({ login, isOpen, setIsOpen }) => {
         className={"_input"}
         name={"password"}
         placeholder={"Password"}
+        type={"password"}
         onChange={handleChange}
         value={postLogin.password}
       />

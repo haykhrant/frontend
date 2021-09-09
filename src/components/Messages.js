@@ -3,12 +3,17 @@ import Message from "./Message";
 import { useSelector } from "react-redux";
 
 const Messages = ({ time }) => {
-  const messages = useSelector((state) => state.message.messages);
+  const { messages, messageType } = useSelector(({ message }) => message);
 
   return (
     <div className={"messages"}>
       {messages.map((message) => (
-        <Message key={message.id} message={message} time={time} />
+        <Message
+          key={message.id}
+          message={message}
+          messageType={messageType}
+          time={time}
+        />
       ))}
     </div>
   );
