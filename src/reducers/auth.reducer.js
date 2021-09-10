@@ -3,6 +3,7 @@ const initialState = {
   authStatus: false,
   registrationStatus: false,
   loginStatus: false,
+  loading: false,
 };
 
 export default function authReducer(state = initialState, action) {
@@ -36,6 +37,11 @@ export default function authReducer(state = initialState, action) {
         ...state,
         auth: {},
         authStatus: false,
+      };
+    case "SET_LOADING_AUTH":
+      return {
+        ...state,
+        loading: action.payload,
       };
     default:
       return state;

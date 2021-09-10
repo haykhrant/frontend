@@ -16,24 +16,20 @@ import "../screen.style.scss";
 
 const Home = (props) => {
   const { getCategories, getProducts, getProductByCategory } = props;
-  const { categories: categoriesFromProps } = props.category;
-  const { products: productsFromProps } = props.product;
+  const { categories: categoriesFromProps, loading: categoryLoading } =
+    props.category;
+  const { products: productsFromProps, loading: productLoading } =
+    props.product;
 
   const [categories, setCategories] = useState([]);
   const [products, setProducts] = useState([]);
-  const [loading, setLoading] = useState(false);
-  const [loadingProducts, setLoadingProducts] = useState(false);
 
   const getProductByCategoryLoading = (id) => {
-    setLoadingProducts(true);
-    getProductByCategory(id).then(() => setLoadingProducts(false));
+    getProductByCategory(id);
   };
 
   useEffect(() => {
-    setLoading(true);
-    Promise.allSettled([getCategories(), getProducts()]).then(() =>
-      setLoading(false)
-    );
+    Promise.allSettled([getCategories(), getProducts()]);
   }, [getCategories, getProducts]);
 
   useEffect(() => {
@@ -50,13 +46,13 @@ const Home = (props) => {
         <Categories
           categories={categories}
           onCategory={getProductByCategoryLoading}
-          loading={loading}
+          loading={categoryLoading}
         />
       </div>
       <div className={"main_side"}>
         <ProductList
           products={products}
-          loading={loading || loadingProducts}
+          loading={productLoading}
           onCategory={getProductByCategoryLoading}
         />
       </div>

@@ -1,15 +1,14 @@
-import React, { useState } from 'react';
-import { connect } from 'react-redux';
-import { loginThunk } from '../../thunks/auth.thunk';
+import React, { useState } from "react";
+import { connect } from "react-redux";
+import { loginThunk } from "../../thunks/auth.thunk";
 
-import Modal from '../../components/Modal';
+import Modal from "../../components/Modal";
 
-const Login = ({ login, isOpen, setIsOpen }) => {
+const Login = ({ login, isOpen, setIsOpen, loading }) => {
   const [postLogin, setPostLogin] = useState({
-    username: '',
-    password: '',
+    username: "",
+    password: "",
   });
-  const [loading, setLoading] = useState(false);
 
   const handleChange = (event) => {
     setPostLogin((prev) => ({
@@ -17,44 +16,42 @@ const Login = ({ login, isOpen, setIsOpen }) => {
       [event.target.name]: `${event.target.value}`,
     }));
   };
-  const handleClick = async () => {
-    setLoading(true);
-    await login(postLogin);
-    setLoading(false);
+  const handleClick = () => {
+    login(postLogin);
   };
 
   const handleClose = () => {
-    if (isOpen === 'login') {
-      setIsOpen('');
+    if (isOpen === "login") {
+      setIsOpen("");
     }
   };
 
   return (
     <Modal
       loading={loading}
-      name={'Log in'}
-      isOpen={isOpen === 'login'}
+      name={"Log in"}
+      isOpen={isOpen === "login"}
       handleClose={handleClose}
     >
-      <div className={'_form'}>
+      <div className={"_form"}>
         <input
-          className={'_input'}
-          name={'username'}
-          placeholder={'User name'}
+          className={"_input"}
+          name={"username"}
+          placeholder={"User name"}
           onChange={handleChange}
           value={postLogin.username}
         />
         <input
-          className={'_input'}
-          name={'password'}
-          placeholder={'Password'}
-          type={'password'}
+          className={"_input"}
+          name={"password"}
+          placeholder={"Password"}
+          type={"password"}
           onChange={handleChange}
           value={postLogin.password}
         />
       </div>
-      <div className={'_form_buttons'}>
-        <button className={'_button'} onClick={handleClick}>
+      <div className={"_form_buttons"}>
+        <button className={"_button"} onClick={handleClick}>
           Log in
         </button>
       </div>
@@ -69,9 +66,7 @@ const mapStateToProps = (state) => {
 
 const mapDispatchToProps = (dispatch) => {
   return {
-    login: async (data) => {
-      await dispatch(loginThunk(data));
-    },
+    login: (data) => dispatch(loginThunk(data)),
   };
 };
 

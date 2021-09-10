@@ -10,7 +10,7 @@ $_black: #000000;
 $_white: #ffffff;
 
 $content-height: 6rem;
-$content-height-mobile: 3rem;
+$bar-height-mobile: 3rem;
 
 $default_font: 'Lobster Two', cursive;
 $second_font: 'Roboto', sans-serif;
@@ -65,6 +65,10 @@ body,
   border-bottom: 0.1rem solid $_black;
   padding: 1rem 2rem;
   z-index: 3;
+}
+
+.user-text{
+  padding: 0.5rem 1rem;
 }
 
 .bar_mobile {
@@ -123,7 +127,7 @@ body,
     align-items: center;
     justify-content: center;
     flex-direction: column;
-    padding: 1rem 2em;
+    padding: 2rem;
     opacity: 0;
     background-color: $root_color;
     border: 0.1rem solid $_black;
@@ -453,6 +457,7 @@ span._input.red {
 
 .menu_icon {
   padding: 0.5rem 1rem;
+  cursor: pointer;
 }
 
 /* not found 404 */
@@ -532,11 +537,11 @@ span._input.red {
     }
 
     .right_section {
-      position: relative;
       display: flex;
       flex-direction: column;
       flex: 2;
       align-items: flex-end;
+      justify-content: space-between;
       overflow: hidden;
 
       .card_info {
@@ -573,27 +578,18 @@ span._input.red {
       }
 
       .button_section {
-        position: absolute;
         display: flex;
         align-items: center;
         justify-content: flex-end;
+        gap: 0.5rem;
         width: 100%;
-        bottom: -10%;
         padding: 0.5rem;
-        opacity: 0;
-        transition: $default_transition;
 
         .info {
           padding: 0.5rem;
-          color: $_white;
-          background-color: $green_price;
+          color: $green_price;
+          border:0.1rem solid $green_price;
         }
-      }
-
-      &:hover .button_section {
-        bottom: 0;
-        opacity: 1;
-        background-color: $grey_opacity;
       }
     }
 
@@ -622,15 +618,19 @@ span._input.red {
   }
 
   .bar_mobile {
-    position: relative;
+    position: absolute;
+    right: 0;
+    left: 0;
     display: flex;
     justify-content: space-between;
     align-items: center;
     height: 3rem;
+    border-bottom: 0.1rem solid $_black;
+
 
     .menu {
       position: absolute;
-      top: $content-height-mobile;
+      top: $bar-height-mobile;
       right: 0;
       width: 100%;
       background-color: $root_color;
@@ -662,6 +662,16 @@ span._input.red {
         display: block;
         height: calc(100vh - 1rem);
         overflow: auto;
+      }
+    }
+  }
+
+  .card_list {
+    .card {
+      flex-direction: column;
+      .left_section {
+        border-right: 0;
+        border-bottom: 1px solid $_black;
       }
     }
   }

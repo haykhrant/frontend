@@ -1,6 +1,7 @@
 const initialState = {
   getProductsStatus: false,
   products: [],
+  loading: false,
 };
 
 export default function categoryReducer(state = initialState, action) {
@@ -15,6 +16,11 @@ export default function categoryReducer(state = initialState, action) {
       return {
         ...state,
         getProductsStatus: false,
+      };
+    case "SET_LOADING_PRODUCT":
+      return {
+        ...state,
+        loading: action.payload,
       };
     default:
       return state;

@@ -1,60 +1,42 @@
-import React, { useState, useEffect } from 'react';
-import { useSelector, useDispatch } from 'react-redux';
-import { logout } from '../actions/auth.actions';
-import { Link } from 'react-router-dom';
-import { Registration } from '../modals/Registration';
-import { Login } from '../modals/Login';
-import { AcceptModal } from './AcceptModal';
+import React, { useState, useEffect } from "react";
+import { useSelector } from "react-redux";
+import { Link } from "react-router-dom";
 
-import MenuIcon from '../icon/menu.svg';
-import Modal from './Modal';
-import Categories from './Categories';
+import MenuIcon from "../icon/menu.svg";
+import Modal from "./Modal";
+import Categories from "./Categories";
 
-import { getProductByCategoryThunk } from '../thunks/product.thunk';
+import { getProductByCategoryThunk } from "../thunks/product.thunk";
 
-import { formatCategories } from '../utils';
+import { formatCategories } from "../utils";
 
-export const MobileBar = () => {
-  const [isOpen, setIsOpen] = useState('');
+export const MobileBar = ({
+  isOpen,
+  setIsOpen,
+  auth,
+  authStatus,
+  dispatch,
+  onClick,
+  handleClose,
+}) => {
   const [isMenuActive, setIsMenuActive] = useState(false);
 
-  const { auth, authStatus } = useSelector(({ auth }) => auth);
   const categories = useSelector(({ category }) =>
     formatCategories(category.categories)
   );
-  const dispatch = useDispatch();
 
   const onMenu = () => {
     setIsMenuActive((prev) => !prev);
   };
 
-  const onClick = (event) => {
-    setIsOpen(event.target.id);
-  };
-
-  const onLogout = () => {
-    dispatch(logout());
-    setIsOpen('');
-  };
-
   const onCategory = (id) => {
     dispatch(getProductByCategoryThunk(id));
-    setIsOpen('');
-  };
-
-  const handleClose = () => {
-    setIsOpen('');
+    setIsOpen("");
   };
 
   useEffect(() => {
     setIsMenuActive(false);
   }, [isOpen, setIsMenuActive]);
-
-  useEffect(() => {
-    if (authStatus) {
-      setIsOpen('');
-    }
-  }, [authStatus]);
 
   return (
     <div className="bar_mobile">
@@ -64,8 +46,8 @@ export const MobileBar = () => {
       <div className="menu_icon" onClick={onMenu}>
         <img src={MenuIcon} alt="menu" className="icon" />
       </div>
-      <div className={isMenuActive ? 'menu active' : 'menu'}>
-        <div className={'menu_container'}>
+      <div className={isMenuActive ? "menu active" : "menu"}>
+        <div className={"menu_container"}>
           {!authStatus ? (
             <>
               <li className="link">
@@ -81,7 +63,7 @@ export const MobileBar = () => {
             </>
           ) : (
             <>
-              <div className="">{auth.fullname}</div>
+              <div className="user-text">{auth.fullname}</div>
               <li className="link">
                 <p id="accept" onClick={onClick}>
                   Logout
@@ -96,20 +78,12 @@ export const MobileBar = () => {
           </li>
         </div>
       </div>
-      <Registration isOpen={isOpen} setIsOpen={setIsOpen} />
-      <Login isOpen={isOpen} setIsOpen={setIsOpen} />
-      <AcceptModal
-        onAccept={onLogout}
-        isOpen={isOpen === 'accept'}
-        setIsOpen={setIsOpen}
-        text="Are you sure you want to log out?"
-      />
       <Modal
-        isOpen={isOpen === 'categories'}
+        isOpen={isOpen === "categories"}
         setIsOpen={setIsOpen}
         handleClose={handleClose}
       >
-        <div className={'page_container'}>
+        <div className={"page_container"}>
           <Categories categories={categories} onCategory={onCategory} />
         </div>
       </Modal>

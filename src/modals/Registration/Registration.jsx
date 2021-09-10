@@ -1,17 +1,15 @@
-import React, { useState } from 'react';
-import { connect } from 'react-redux';
-import { registerThunk } from '../../thunks/auth.thunk';
+import React, { useState } from "react";
+import { connect } from "react-redux";
+import { registerThunk } from "../../thunks/auth.thunk";
 
-import Modal from '../../components/Modal';
+import Modal from "../../components/Modal";
 
-const Registration = ({ register, isOpen, setIsOpen }) => {
+const Registration = ({ register, isOpen, setIsOpen, loading }) => {
   const [postRegistration, setPostRegistration] = useState({
-    fullname: '',
-    username: '',
-    password: '',
+    fullname: "",
+    username: "",
+    password: "",
   });
-
-  const [loading, setLoading] = useState(false);
 
   const handleChange = (event) => {
     setPostRegistration((prev) => ({
@@ -19,51 +17,49 @@ const Registration = ({ register, isOpen, setIsOpen }) => {
       [event.target.name]: `${event.target.value}`,
     }));
   };
-  const handleClick = async () => {
-    setLoading(true);
-    await register(postRegistration);
-    setLoading(false);
+  const handleClick = () => {
+    register(postRegistration);
   };
 
   const handleClose = () => {
-    if (isOpen === 'register') {
-      setIsOpen('');
+    if (isOpen === "register") {
+      setIsOpen("");
     }
   };
 
   return (
     <Modal
       loading={loading}
-      name={'Registration'}
-      isOpen={isOpen === 'register'}
+      name={"Registration"}
+      isOpen={isOpen === "register"}
       handleClose={handleClose}
     >
       <div className="_form">
         <input
-          className={'_input'}
-          name={'fullname'}
-          placeholder={'Full name'}
+          className={"_input"}
+          name={"fullname"}
+          placeholder={"Full name"}
           onChange={handleChange}
           value={postRegistration.fullname}
         />
         <input
-          className={'_input'}
-          name={'username'}
-          placeholder={'User name'}
+          className={"_input"}
+          name={"username"}
+          placeholder={"User name"}
           onChange={handleChange}
           value={postRegistration.username}
         />
         <input
-          className={'_input'}
-          name={'password'}
-          placeholder={'Password'}
-          type={'password'}
+          className={"_input"}
+          name={"password"}
+          placeholder={"Password"}
+          type={"password"}
           onChange={handleChange}
           value={postRegistration.password}
         />
       </div>
-      <div className={'_form_buttons'}>
-        <button className={'_button'} onClick={handleClick}>
+      <div className={"_form_buttons"}>
+        <button className={"_button"} onClick={handleClick}>
           Register
         </button>
       </div>
@@ -78,9 +74,7 @@ const mapStateToProps = (state) => {
 
 const mapDispatchToProps = (dispatch) => {
   return {
-    register: async (data) => {
-      await dispatch(registerThunk(data));
-    },
+    register: (data) => dispatch(registerThunk(data)),
   };
 };
 
