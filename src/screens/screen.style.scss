@@ -1,45 +1,32 @@
-$content-height: 6rem;
-$content-height-mobile: 3.5rem;
-
+@import "../index";
 
 .screen {
+  position: absolute;
   display: flex;
-  padding: calc(6rem - 1vh) 0 0 0;
+  width: 100%;
+  top: $content-top;
 }
 
-
 .left_side {
-  position: absolute;
-  top: $content-height;
-  height: calc(100vh - 6.5rem);
-  width: 25%;
+  height: $content-height;
+  flex: 1;
   overflow-y: auto;
   padding: 0 0.5rem;
 }
 
 .main_side {
-  position: absolute;
-  top: $content-height;
-  left: calc(25% + 1rem);
-  height: calc(100vh - 6.5rem);
-  min-width: calc(100vw - (25% + 1rem));
-  display: flex;
+  height: $content-height;
+  flex: 2;
   overflow-y: auto;
   padding: 0 0.5rem;
 }
 
 @media (max-width: 767px) {
-  .screen {
-    flex-direction: column;
-  }
-
   .left_side {
-   display: none;
+    display: none;
   }
 
   .main_side {
-    top: $content-height-mobile;
-    left: 0;
-    min-width: calc(100vw - 1rem);
+    height: $content-height-mobile;
   }
 }

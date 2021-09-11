@@ -1,0 +1,97 @@
+$root_color: #f6f6f6;
+$main_color: #eaeaea;
+$second_color: #cdcdcd;
+$white_opacity: #ffffffda;
+$grey_opacity: #00000019;
+$red_message: #b61a1a;
+$green_message: #178f17;
+$green_price: #11ad11ff;
+$_black: #000000;
+$_white: #ffffff;
+
+$content-height-mobile: calc(94vh - 2rem);
+$content-top-mobile: calc(3.5vh + 2rem);
+$bar-height-mobile: calc(3vh + 2rem);
+
+$content-height: calc(95vh - 2rem);
+$content-top: calc(4.5vh + 2rem);
+$bar-height: calc(4vh + 2rem);
+
+$default_font: "Lobster Two", cursive;
+$second_font: "Roboto", sans-serif;
+
+$font_size_middle: 1rem;
+$font_size_small: 0.8rem;
+$font_size_large: 1.3rem;
+
+$default_transition: 0.15s ease-in-out;
+
+@mixin background-gradient {
+  background-image: linear-gradient(
+    90deg,
+    $main_color 0,
+    $grey_opacity 150px,
+    $main_color 300px
+  );
+  background-size: 700px;
+}
+
+@mixin animate {
+  animation: loading 2s ease-in-out infinite;
+}
+
+/* app */
+* {
+  margin: 0;
+  padding: 0;
+  border: 0;
+  box-sizing: border-box;
+  font-family: $default_font;
+}
+
+html,
+body,
+#root {
+  height: 100vh;
+  background-color: $root_color;
+}
+
+/* animations */
+@keyframes loading {
+  0% {
+    background-position: 0;
+  }
+  50% {
+    background-position: -30rem;
+  }
+  100% {
+    background-position: 0;
+  }
+}
+
+/*scrollbar*/
+::-webkit-scrollbar {
+  width: 10px;
+}
+
+::-webkit-scrollbar-track {
+  background: $root_color;
+}
+
+::-webkit-scrollbar-thumb {
+  background: $grey_opacity;
+  border-radius: 1rem;
+}
+
+::-webkit-scrollbar-thumb:hover {
+  background: $second_color;
+}
+
+/*safari*/
+@media screen and (-webkit-min-device-pixel-ratio: 0) {
+  select,
+  textarea,
+  input {
+    font-size: 16px;
+  }
+}
