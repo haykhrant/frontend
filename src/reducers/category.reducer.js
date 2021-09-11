@@ -1,6 +1,7 @@
 const initialState = {
   getCategoriesStatus: false,
   categories: [],
+  loading: false,
 };
 
 export default function categoryReducer(state = initialState, action) {
@@ -15,6 +16,11 @@ export default function categoryReducer(state = initialState, action) {
       return {
         ...state,
         getCategoriesStatus: false,
+      };
+    case "SET_LOADING_CATEGORY":
+      return {
+        ...state,
+        loading: action.payload,
       };
     default:
       return state;

@@ -1,22 +1,36 @@
 import React from "react";
+
 import { Link } from "react-router-dom";
 
-const Bar = () => {
+export const Bar = ({ auth, authStatus, onClick }) => {
   return (
     <div className="bar">
-      <p className="_title">
+      <div className="_title">
         <Link to="/">Eco-Market</Link>
-      </p>
-      <div className={"link_container"}>
-        <li className="link">
-          <Link to="/register">Registration</Link>
-        </li>
-        <li className="link">
-          <Link to="/login">Log in</Link>
-        </li>
       </div>
+      {!authStatus ? (
+        <div className={"link_container"}>
+          <li className="link">
+            <p id="register" onClick={onClick}>
+              Registration
+            </p>
+          </li>
+          <li className="link">
+            <p id="login" onClick={onClick}>
+              Log in
+            </p>
+          </li>
+        </div>
+      ) : (
+        <div className={"link_container"}>
+          <div className="user-text">{auth.fullname}</div>
+          <li className="link">
+            <p id="accept" onClick={onClick}>
+              Logout
+            </p>
+          </li>
+        </div>
+      )}
     </div>
   );
 };
-
-export default Bar;

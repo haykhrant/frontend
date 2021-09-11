@@ -1,16 +1,13 @@
 import React from "react";
-import LoadingIcon from "../icon/loading.gif";
 import CrossIcon from "../icon/cross_button.png";
-import { useHistory } from "react-router-dom";
+import Loading from "./Loading";
 
-const Modal = ({ name, isOpen, loading, children }) => {
-  const history = useHistory();
-
-  const goToPreviousPath = () => {
-    history.goBack();
+const Modal = ({ name, isOpen, handleClose, loading, children }) => {
+  const onClose = () => {
+    handleClose();
   };
   const onOutOfModal = (event) => {
-    if (event.currentTarget === event.target) goToPreviousPath();
+    if (event.currentTarget === event.target) handleClose();
   };
 
   return (
@@ -19,15 +16,11 @@ const Modal = ({ name, isOpen, loading, children }) => {
       onMouseDown={onOutOfModal}
     >
       <div className={"_container"}>
-        <div className="modal_close" onClick={goToPreviousPath}>
+        <div className="modal_close" onClick={onClose}>
           <img src={CrossIcon} alt="Close" className="icon middle" />
         </div>
         <span className="_title">{name}</span>
-        {loading && (
-          <div className="loading_small">
-            <img src={LoadingIcon} alt="Loading..." className="icon middle" />
-          </div>
-        )}
+        {loading && <Loading size={"small"} />}
         {children}
       </div>
     </div>

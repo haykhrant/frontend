@@ -3,7 +3,7 @@ import CrossIcon from "../icon/cross_button.png";
 import { useDispatch } from "react-redux";
 import { filterMessages } from "../actions";
 
-const Message = ({ message, time }) => {
+const Message = ({ message, messageType, time }) => {
   const dispatch = useDispatch();
 
   const [open, setOpen] = useState(false);
@@ -33,7 +33,7 @@ const Message = ({ message, time }) => {
   };
 
   return (
-    <div className={open ? "message active" : "message"}>
+    <div className={open ? `message ${messageType} active` : "message"}>
       <span>{message.text}</span>
       <div className="message_close" onClick={onClose}>
         <img src={CrossIcon} alt="Close" className="icon small" />
